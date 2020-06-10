@@ -1,0 +1,24 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="header">Konsole für H2-Datenbank</ui:define>
+	
+	<ui:define name="main">
+	
+		<table>
+			<tr><td>Server Settings:</td><td>Generic H2 (Embedded)</td></tr>
+			<tr><td>Setting Name:</td><td>Generic H2 (Embedded)</td></tr>
+			<tr><td>Driver Class:</td><td>org.h2.Driver</td></tr>
+			<tr><td>JDBC UTL:</td><td>jdbc:h2:mem:test</td></tr>
+			<tr><td>User Name:</td><td>sa</td></tr>
+			<tr><td>Password:</td><td>sa</td></tr>
+		</table>
+	
+		<a href="#{request.contextPath}/h2-console" target="_blank">Hier geht's zur H2-Datenbank</a>
+		
+	</ui:define>
+
+</ui:composition>

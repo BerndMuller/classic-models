@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:comp="http://xmlns.jcp.org/jsf/composite/components">
+
+	<ui:define name="header">Customers</ui:define>
+	
+	<ui:define name="main">	
+		<h:outputStylesheet library="css" name="data-tables.css" />
+		<h:form id="form">
+			<section>
+				<h:panelGrid>
+					<h:dataTable value="#{customerView.all}" var="customer">
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							#{customer.customerName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Stadt</f:facet>
+							#{customer.city}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Land</f:facet>
+							#{customer.country}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Kontakt</f:facet>
+							#{customer.contactFirstName} #{customer.contactLastName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Bestellungen</f:facet>
+							#{customer.orders}
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</section>
+		</h:form>
+				
+	</ui:define>
+	
+
+</ui:composition>

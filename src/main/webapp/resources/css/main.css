@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+:root {
+	box-sizing: border-box;
+	font-size: 100%;
+ 	--main-color-light: #E5ECE9;
+ 	--red: red; 
+ 	--main-color-dark: #B7C3CE; 
+	--border: 1px solid var(--main-color-dark); 
+	--margin: 0.2rem 0.4rem 0.2rem 0.4rem;
+	--padding: 0.5rem 0.4rem 0.5rem 0.4rem;
+	margin: 0;
+  	padding: 0;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
+html {
+	height: 100%;
+	background-color: white;
+}
+
+body {
+	font-family: sans-serif;
+	background-color: var(--main-color-light);
+	min-height: 98%;
+	min-width: 300px;
+	margin: 0.5%;
+	padding: 0.5%;
+}
+
+body header {
+	border: var(--border);
+	font-size: 1.1rem;
+	margin: var(--margin);
+	padding: var(--padding);
+	background-color: white;
+	text-align: center;
+}
+
+main {
+	border: var(--border);
+	margin: var(--margin);
+/* 	margin: 1.5rem 0.4rem 1.5rem 0.4rem; */
+	padding: var(--padding);
+	background-color: white;
+}
+
+section {
+	padding: var(--padding);
+}
+
+section table th {
+	padding: var(--padding);
+	font-size: 1.1rem;
+}
+	
+footer {
+	border: var(--border);
+	font-size: 0.8rem;
+	margin: var(--margin);
+	padding: var(--padding);
+	background-color: white;
+	text-align: center;
+}
+
+main section table {
+	width: 100%;
+}
+
+	
+select {
+
+}
+
+input[type=button], input[type=submit] {
+	background-color: var(--main-color-light);
+	border: var(--border);
+	font-size: 0.9rem;
+ 	padding: 0.2rem 0.5rem 0.2rem 0.5rem; 
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+	filter: brightness(0.9);
+}
+
+input[type=text] {
+	font-size: 0.9rem;
+}

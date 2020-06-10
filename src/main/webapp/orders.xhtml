@@ -1,0 +1,51 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:comp="http://xmlns.jcp.org/jsf/composite/components">
+
+	<ui:define name="header">Customers</ui:define>
+	
+	<ui:define name="main">	
+		<h:outputStylesheet library="css" name="data-tables.css" />
+		<h:form id="form">
+			<section>
+				<h:panelGrid>
+					<h:dataTable value="#{ordersView.all}" var="order">
+						<h:column>
+							<f:facet name="header">Bst.Nr.</f:facet>
+							#{order.id}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Kunde</f:facet>
+							#{order.customer.customerName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Bestellung</f:facet>
+							<h:outputText value="#{order.orderDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Versand</f:facet>
+							<h:outputText value="#{order.shippedDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Zustellung</f:facet>
+							<h:outputText value="#{order.requiredDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</section>
+		</h:form>
+				
+	</ui:define>
+	
+
+</ui:composition>

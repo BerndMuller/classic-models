@@ -1,0 +1,37 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="header">Mitarbeiter (Details)</ui:define>
+	
+	<ui:define name="main">
+		<h:form>
+		<f:metadata>
+			<f:viewParam name="employeeId" value="#{employeeView.employeeId}"/>
+			<f:viewAction action="#{employeeView.viewAction}" />
+		</f:metadata>
+		<section>
+			<h:panelGrid columns="2" >
+				Vorname: <h:inputText id="vorname" value="#{employeeView.employee.firstName}" />
+				Nachname: <h:inputText id="nachname" value="#{employeeView.employee.lastName}" />
+				E-Mail: <h:inputText value="#{employeeView.employee.email}" />
+				Stellenbezeichnung: <h:inputText value="#{employeeView.employee.jobTitle}" />
+				Extension: <h:inputText value="#{employeeView.employee.extension}" />
+				Niederlassung: 
+				<h:selectOneMenu value="#{employeeView.employee.office}" converter="#{officeConverter}">
+					<f:selectItems value="#{officeConverter.allOffices()}" var="office" itemLabel="#{office.city}" />
+				</h:selectOneMenu>
+				Vorgesetzter:
+				<h:selectOneMenu value="#{employeeView.employee.reportsTo}" converter="#{employeeConverter}">
+					<f:selectItem itemLabel="- kein Vorgesetzter - " itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{employeeConverter.allEmployees()}" var="employee" itemLabel="#{employee.firstAndLastName}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</section>
+		<h:commandButton action="#{employeeView.save}" value="Speichern" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

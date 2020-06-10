@@ -1,0 +1,64 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:comp="http://xmlns.jcp.org/jsf/composite/components">
+
+
+	<ui:define name="css">
+  	</ui:define>
+
+	<ui:define name="header">Mitarbeiterübersicht</ui:define>
+
+	<ui:define name="main">
+		<h:outputStylesheet library="css" name="data-tables.css" />
+		<h:form>
+			<section>
+				<h:panelGrid>
+					<f:facet name="header">Mitarbeiter</f:facet>
+					<h:dataTable value="#{employeesView.employees}" var="employee">
+						<h:column>
+							<f:facet name="header">Vorname</f:facet>
+							#{employee.firstName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nachname</f:facet>
+							#{employee.lastName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Niederlassung</f:facet>
+							#{employee.office.city}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Stellenbezeichnung</f:facet>
+							#{employee.jobTitle}
+						</h:column>
+						<h:column>
+							<f:facet name="header">E-Mail</f:facet>
+							#{employee.email}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Vorgesetzter</f:facet>
+						#{employee.reportsTo.firstAndLastName}
+						</h:column>
+						<h:column>
+							<h:button outcome="employee" value="Ändern">
+								<f:param name="employeeId" value="#{employee.id}" />
+							</h:button>
+						</h:column>
+						<h:column>
+							<h:commandButton action="#{employeesView.deleteEmployee}" value="Löschen"
+								onclick="if (! confirm('Soll Mitarbeiter #{employee.id} wirklich gelöscht werden?')) return false">
+								<f:setPropertyActionListener target="#{employeesView.employeeToDelete}" value="#{employee.id}" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</section>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

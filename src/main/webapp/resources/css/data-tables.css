@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+/* to be used in overview tables, as in employees.xhtml, customers.xhtml, orders.xhtml */
+
+tbody tbody > tr:nth-child(odd) {
+	background-color: var(--main-color-light);
+}
+
+tbody tbody > tr:nth-child(even) { 
+	background-color: var(--main-color-light);
+	filter: brightness(0.96);
+}
+
+tbody tbody > tr:hover:nth-child(odd) {
+	filter: brightness(1.05);
+}
+			
+tbody tbody > tr:hover:nth-child(even) {
+	filter: brightness(1.05);
+}
