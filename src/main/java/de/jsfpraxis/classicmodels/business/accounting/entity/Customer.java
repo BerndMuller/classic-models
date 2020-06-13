@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,11 +18,8 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 
 @Entity
 @Table(name = "Customers")
-@NamedQueries({
-	@NamedQuery(name = "Customer.getAll", query = "SELECT c from Customer c order by c.id"),
-	@NamedQuery(name = "Customer.getNumberOfCustomers", query = "Select count(c) from Customer c"),
-	@NamedQuery(name = "Customer.getByContactLastNameAndId", query = "SELECT c from Customer c where c.contactLastName = :contactLastName and c.id = :id")
-})
+@NamedQuery(name = "Customer.findAll", query = "SELECT c from Customer c order by c.id")
+@NamedQuery(name = "Customer.count", query = "Select count(c) from Customer c")
 public class Customer {
 
 	@Id

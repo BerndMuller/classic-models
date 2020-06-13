@@ -14,8 +14,16 @@
 		</f:metadata>
 		<section>
 			<h:panelGrid columns="2" >
-				Name: <h:inputText id="name" value="#{}" />
-
+				Name: <h:inputText id="name" value="#{customerView.customer.customerName}" />
+				Stadt: <h:inputText value="#{customerView.customer.city}" />
+				Land: <h:inputText value="#{customerView.customer.country}" />
+				Mitarbeiter: 
+				<h:selectOneMenu value="#{customerView.customer.assignedEmployee}" converter="#{employeeConverter}">
+					<f:selectItem itemLabel="- nicht zugewiesen - " itemValue="#{null}" noSelectionOption="true" />
+					<!-- TODO in Klasse Employees -->
+					<f:selectItems value="#{employeesView.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
 		</section>
 		<h:commandButton action="#{customerView.save}" value="Speichern" />
 		</h:form>

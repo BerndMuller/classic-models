@@ -13,7 +13,7 @@
 		<h:form id="form">
 			<section>
 				<h:panelGrid>
-					<h:dataTable value="#{customerView.all}" var="customer">
+					<h:dataTable value="#{customersView.customers}" var="customer">
 						<h:column>
 							<f:facet name="header">Name</f:facet>
 							#{customer.customerName}
@@ -31,8 +31,23 @@
 							#{customer.contactFirstName} #{customer.contactLastName}
 						</h:column>
 						<h:column>
+							<f:facet name="header">Mitarbeiter</f:facet>
+							#{customer.assignedEmployee.firstAndLastName}
+						</h:column>
+						<h:column>
 							<f:facet name="header">Bestellungen</f:facet>
 							#{customer.orders}
+						</h:column>
+						<h:column>
+							<h:button outcome="customer" value="Ändern">
+								<f:param name="customerId" value="#{customer.id}" />
+							</h:button>
+						</h:column>
+						<h:column>
+							<h:commandButton action="#{customersView}" value="Löschen"
+								onclick="if (! confirm('Soll Kunde #{customer.id} wirklich gelöscht werden?')) return false">
+								<f:setPropertyActionListener target="#{customersView.customerToDelete}" value="#{customer.id}" />
+							</h:commandButton>
 						</h:column>
 					</h:dataTable>
 				</h:panelGrid>

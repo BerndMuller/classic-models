@@ -1,22 +1,22 @@
 package de.jsfpraxis.classicmodels.business.accounting.boundary;
 
-import java.util.List;
-
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
+import de.jsfpraxis.classicmodels.business.EntityService;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
+/**
+ * Services (CRUD) for Customer. 
+ * 
+ * @author Bernd Müller
+ *
+ */
+@SuppressWarnings("serial")
 @Stateful
-public class CustomerService {
+public class CustomerService extends EntityService<Customer> {
 
-	@PersistenceContext(type = PersistenceContextType.EXTENDED)
-	EntityManager em;
-	
-	
-	public List<Customer> allCustomers() {
-		return em.createNamedQuery("Customer.getAll", Customer.class).getResultList();
+
+	public CustomerService() {
+		super(Customer.class);
 	}
 }

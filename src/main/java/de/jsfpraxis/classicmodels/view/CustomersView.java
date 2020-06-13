@@ -12,11 +12,38 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 @Named
 @RequestScoped
 public class CustomersView {
+	
+	private Integer customerToDelete;
+	private List<Customer> customers;
 
 	@Inject
 	CustomerService customerService;
-	
-	public List<Customer> getAll() {
-		return customerService.allCustomers();
+		
+	public CustomersView() {
 	}
+	
+	public void deleteEmployee() {
+		customerService.remove(customerToDelete);
+	}
+	
+	/**
+	 * List of all customers.
+	 * 
+	 * <p> Prevents multiple JPA requests via lazy initialization and caching.
+	 * 
+	 * @return list of all customers.
+	 */
+	public List<Customer> getCustomers() {
+		if (customers == null) {
+			customers = customerService.findAll();
+		}
+		return customers;
+	}
+
+	
+	// Getter und Setter
+	public void setCustomerToDelete(Integer customerToDelete) {
+		this.customerToDelete = customerToDelete;
+	}
+	
 }

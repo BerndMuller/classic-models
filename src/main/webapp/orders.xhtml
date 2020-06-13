@@ -2,18 +2,27 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:comp="http://xmlns.jcp.org/jsf/composite/components">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
+	<ui:define name="css">
+		table tfoot tr td {
+			text-align: center;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+		}
+  	</ui:define>
+  	
 	<ui:define name="header">Customers</ui:define>
 	
-	<ui:define name="main">	
-		<h:outputStylesheet library="css" name="data-tables.css" />
+	<ui:define name="main">
+		<f:metadata>
+            <f:viewParam name="page"/>
+        </f:metadata>
+    	<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form id="form">
 			<section>
 				<h:panelGrid>
-					<h:dataTable value="#{ordersView.all}" var="order">
+					<h:dataTable id="table" value="#{ordersView.getOrders(page)}" var="order">
 						<h:column>
 							<f:facet name="header">Bst.Nr.</f:facet>
 							#{order.id}
@@ -40,6 +49,17 @@
 								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
 							</h:outputText>
 						</h:column>
+
+						<f:facet name="footer">
+							<h:button value="&lt;" outcome="orders.xhtml">
+    			    			<f:param name="page" value="#{ordersView.adjustPage(page, -1)}"/>
+        					</h:button>
+        					&#x00A0;&#x00A0;
+		        			<h:button value="&gt;" outcome="orders.xhtml">
+        						<f:param name="page" value="#{ordersView.adjustPage(page, 1)}"/>
+        					</h:button>
+						</f:facet>
+
 					</h:dataTable>
 				</h:panelGrid>
 			</section>

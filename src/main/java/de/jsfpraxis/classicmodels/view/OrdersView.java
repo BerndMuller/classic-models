@@ -14,6 +14,7 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
 public class OrdersView {
 
 	private Integer orderToDelete;
+	private List<Order> orders;
 	
 	@Inject
 	OrderService orderService;
@@ -22,15 +23,22 @@ public class OrdersView {
 	}
 	
 	public void deleteOrder() {
-		orderService.delete(orderToDelete);
+		orderService.remove(orderToDelete);
 	}
 	
-	
-	public List<Order> getAll() {
-		return orderService.allOrders();
+	public int adjustPage(int pageNumber, Integer pageOffset) {
+		return orderService.adjustPage(pageNumber, pageOffset);
 	}
 
+	
+	public List<Order> getOrders(int page) {
+		if (orders == null) {
+			orders = orderService.readPage(page);	
+		}
+		return orders; 
+	}
 
+	
 	// Getter und Setter
 	public void setOrderToDelete(Integer orderToDelete) {
 		this.orderToDelete = orderToDelete;

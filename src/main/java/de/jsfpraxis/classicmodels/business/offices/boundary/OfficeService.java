@@ -18,12 +18,10 @@ public class OfficeService {
 	
 
 	public void create(Office office) {
-		System.out.println("create office " + office);
 		em.persist(office);
 	}
 	
 	public Office read(Integer id) {
-		System.out.println("OfficeService read. "+ id);
 		return em.find(Office.class, id);
 	}
 	

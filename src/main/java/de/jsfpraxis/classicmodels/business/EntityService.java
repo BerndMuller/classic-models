@@ -28,6 +28,7 @@ public abstract class EntityService<T> implements Serializable {
 	
 	private static final String COUNT = ".count"; 
 	private static final String FIND_ALL = ".findAll";
+	private static final int PAGE_SIZE = 20; // pagination size for query results
 
 	private Class<T> entityClass;
 	
@@ -77,17 +78,58 @@ public abstract class EntityService<T> implements Serializable {
 		return em.createNamedQuery(entityClass.getSimpleName() + FIND_ALL, entityClass).getResultList();	
 	}
 
+	
 	/**
-	 * All entites of type T paginated.
+	 * Reads entities for page.
 	 * 
-	 * @param firstResult postion of first entity
-	 * @param maxResult maximum number of entities
-	 * @return List of all entities of type T starting at firstResult at most maxResults results.
+	 * Used to paginate through result sets.
+	 *
+	 * @param page The page number, starting with 1
+	 * @return list of entities for given page number
 	 */
-	public List<T> findAll(int firstResult, int maxResult) {
-		TypedQuery<T> query = em.createNamedQuery(entityClass.getSimpleName() + FIND_ALL, entityClass);
-		query.setFirstResult(firstResult);
-		query.setMaxResults(maxResult);
+	public List<T> readPage(int page) {
+		if (page == 0) {
+			page = 1;
+		}
+		TypedQuery<T> query = em.createNamedQuery(entityClass.getSimpleName() + FIND_ALL, entityClass);	
+		query.setFirstResult((page - 1) * PAGE_SIZE);
+		query.setMaxResults(PAGE_SIZE);
 		return query.getResultList();
 	}
+
+	
+	/**
+	 * How many pages are available.
+	 * 
+	 * @return Number of pages available
+	 */
+	public int availablePages() {
+		int numberOfEntitiesAvailable = em.createNamedQuery(entityClass.getSimpleName() + COUNT, Long.class).getSingleResult().intValue();
+		if (numberOfEntitiesAvailable % PAGE_SIZE == 0) {
+			return numberOfEntitiesAvailable / PAGE_SIZE;
+		} else {
+			return numberOfEntitiesAvailable / PAGE_SIZE + 1;
+		}
+	}
+
+	
+	/**
+	 * Adds the page offset to the current page number. 
+	 * 
+	 * @param pageNumber Current page number that should be adjusted (between 1 and actual amount of pages)
+	 * @param pageOffset Offset to adjust page (positve increases, negative decreases)
+	 * @return Modified page number
+	 */
+	public int adjustPage(int pageNumber, int pageOffset) {
+		if (pageNumber <= 0) {
+			pageNumber = 1;
+		}
+		if (pageNumber + pageOffset > 0 && pageNumber + pageOffset <= availablePages()) {
+			return pageNumber + pageOffset;
+		} else {
+			return pageNumber;
+		}
+	}
+
+	
 }

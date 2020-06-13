@@ -21,12 +21,10 @@ public class EmployeesView {
 	
 	public EmployeesView() {
 	}
-
 	
 	public void deleteEmployee() {
 		employeeService.remove(employeeToDelete);
 	}
-	
 	
 	/**
 	 * List of all employees.
@@ -38,7 +36,6 @@ public class EmployeesView {
 	public List<Employee> getEmployees() {
 		if (employees == null) {
 			employees = employeeService.findAll();
-			System.out.println(employees.size() + " found");
 		}
 		return employees;
 	}

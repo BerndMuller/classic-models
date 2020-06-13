@@ -8,9 +8,6 @@ import javax.inject.Named;
 
 import de.jsfpraxis.classicmodels.business.accounting.boundary.CustomerService;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
-import de.jsfpraxis.classicmodels.business.offices.boundary.EmployeeService;
-import de.jsfpraxis.classicmodels.business.offices.boundary.OfficeService;
-import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 
 @Named
 @ViewScoped
@@ -31,9 +28,9 @@ public class CustomerView implements Serializable {
 	
 	public String save() {
 		if (customer.getId() == null) {
-			//customerService.create(customer);
+			customerService.persist(customer);
 		} else {
-			//customerService.update(customer);
+			customerService.merge(customer);
 		}
 		return "customers.xhtml?faces-redirect=true";
 	}
@@ -46,11 +43,23 @@ public class CustomerView implements Serializable {
 		if (customerId == null) {
 			// kein View-Parameter, also Neuanlage
 		} else {
-			//customer = customerService.read(customerId);
+			customer = customerService.find(customerId);
 		}
 	}
 
-	
 	// Getter und Setter
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
 
 }
