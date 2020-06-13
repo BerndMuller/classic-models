@@ -53,6 +53,19 @@ public class Product {
 	public Product() {
 	}
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof Product)) {
+        	return false;
+        }
+        return id != null && id.equals(((Product) other).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 42;
+    }
 	
 	public String getId() {
 		return id;

@@ -26,7 +26,7 @@
 				Vorgesetzter:
 				<h:selectOneMenu value="#{employeeView.employee.reportsTo}" converter="#{employeeConverter}">
 					<f:selectItem itemLabel="- kein Vorgesetzter - " itemValue="#{null}" noSelectionOption="true" />
-					<f:selectItems value="#{employeeConverter.allEmployees()}" var="employee" itemLabel="#{employee.firstAndLastName}" />
+					<f:selectItems value="#{employeesView.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 		</section>

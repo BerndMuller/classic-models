@@ -24,20 +24,21 @@ public class EmployeesView {
 
 	
 	public void deleteEmployee() {
-		employeeService.delete(employeeToDelete);
+		employeeService.remove(employeeToDelete);
 	}
 	
 	
 	/**
 	 * List of all employees.
 	 * 
-	 * <p> Prevents multiple JPA requests.
+	 * <p> Prevents multiple JPA requests via lazy initialization and caching.
 	 * 
 	 * @return list of all employees.
 	 */
 	public List<Employee> getEmployees() {
 		if (employees == null) {
-			employees = employeeService.allEmployees(); 
+			employees = employeeService.findAll();
+			System.out.println(employees.size() + " found");
 		}
 		return employees;
 	}
@@ -47,6 +48,6 @@ public class EmployeesView {
 	public void setEmployeeToDelete(Integer employeeToDelete) {
 		this.employeeToDelete = employeeToDelete;
 	}
-	
+
 	
 }

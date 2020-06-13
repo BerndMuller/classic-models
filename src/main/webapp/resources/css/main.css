@@ -3,14 +3,16 @@
 :root {
 	box-sizing: border-box;
 	font-size: 100%;
- 	--main-color-light: #E5ECE9;
- 	--red: red; 
- 	--main-color-dark: #B7C3CE; 
-	--border: 1px solid var(--main-color-dark); 
-	--margin: 0.2rem 0.4rem 0.2rem 0.4rem;
-	--padding: 0.5rem 0.4rem 0.5rem 0.4rem;
 	margin: 0;
   	padding: 0;
+ 	--main-color-light: #E5ECE9;
+ 	--main-color-dark: #B7C3CE; 
+ 	--main-margin: 0.2rem 0.4rem 0.2rem 0.4rem;
+	--main-padding: 0.5rem 0.4rem 0.5rem 0.4rem;
+	--input-width: 20rem;
+	--input-height: 1.9rem;
+	--border: 1px solid var(--main-color-dark);
+	--border-radius: 0.2rem; 
 }
 
 *,
@@ -36,34 +38,33 @@ body {
 body header {
 	border: var(--border);
 	font-size: 1.1rem;
-	margin: var(--margin);
-	padding: var(--padding);
+	margin: var(--main-margin);
+	padding: var(--main-padding);
 	background-color: white;
 	text-align: center;
 }
 
 main {
 	border: var(--border);
-	margin: var(--margin);
-/* 	margin: 1.5rem 0.4rem 1.5rem 0.4rem; */
-	padding: var(--padding);
+	margin: var(--main-margin);
+	padding: var(--main-padding);
 	background-color: white;
 }
 
 section {
-	padding: var(--padding);
+	padding: var(--main-padding);
 }
 
 section table th {
-	padding: var(--padding);
+	padding: var(--main-padding);
 	font-size: 1.1rem;
 }
 	
 footer {
 	border: var(--border);
 	font-size: 0.8rem;
-	margin: var(--margin);
-	padding: var(--padding);
+	margin: var(--main-margin);
+	padding: var(--main-padding);
 	background-color: white;
 	text-align: center;
 }
@@ -74,7 +75,13 @@ main section table {
 
 	
 select {
-
+	width: var(--input-width);
+	height: var(--input-height);
+	border: var(--border);
+	font-size: 0.9rem;
+	background-color: var(--main-color-light);
+	filter: brightness(1.05);
+	border-radius: var(--border-radius);
 }
 
 input[type=button], input[type=submit] {
@@ -89,5 +96,12 @@ input[type=button]:hover, input[type=submit]:hover {
 }
 
 input[type=text] {
+	width: var(--input-width);
+	height: var(--input-height);
+	border: var(--border);
 	font-size: 0.9rem;
+	background-color: var(--main-color-light);
+	filter: brightness(1.05);
+	border-radius: var(--border-radius);
+	padding-left: 0.2rem;
 }

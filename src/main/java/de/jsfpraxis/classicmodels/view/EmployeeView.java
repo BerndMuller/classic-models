@@ -32,12 +32,11 @@ public class EmployeeView implements Serializable {
 	
 	public String save() {
 		if (employee.getId() == null) {
-			employeeService.create(employee);
+			employeeService.persist(employee);
 		} else {
-			System.out.println("in save() " + employee.getOffice().getCity());
-			employeeService.update(employee);
+			employeeService.merge(employee);
 		}
-		return "employees.jsf?faces-redirect=true";
+		return "employees.xhtml?faces-redirect=true";
 	}
 	
 	
@@ -48,7 +47,7 @@ public class EmployeeView implements Serializable {
 		if (employeeId == null) {
 			// kein View-Parameter, also Neuanlage
 		} else {
-			employee = employeeService.read(employeeId);
+			employee = employeeService.find(employeeId);
 		}
 	}
 

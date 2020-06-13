@@ -38,6 +38,19 @@ public class ProductLine {
 	public ProductLine() {
 	}
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof ProductLine)) {
+        	return false;
+        }
+        return id != null && id.equals(((ProductLine) other).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 42;
+    }
 
 	public String getId() {
 		return id;

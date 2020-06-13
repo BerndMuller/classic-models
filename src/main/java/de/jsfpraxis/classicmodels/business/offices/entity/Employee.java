@@ -18,9 +18,8 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @Entity
 @Table(name = "Employees")
-@NamedQuery(name = "Employee.getAll", query = "SELECT e from Employee e LEFT JOIN FETCH e.office order by e.id")
-@NamedQuery(name = "Employee.getNumberOfEmployees", query = "Select count(e) from Employee e")
-@NamedQuery(name = "Employee.getByLastNameAndId", query = "SELECT e from Employee e where e.lastName = :lastName and e.id = :id")
+@NamedQuery(name = "Employee.findAll", query = "SELECT e from Employee e LEFT JOIN FETCH e.office order by e.firstName, lastName")
+@NamedQuery(name = "Employee.count", query = "Select count(e) from Employee e")
 public class Employee {
 
 	@Id

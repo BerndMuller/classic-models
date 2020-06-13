@@ -2,7 +2,7 @@
 
 nav {
 	border: var(--border);
-	margin: var(--margin);
+	margin: var(--main-margin);
 	background-color: white;
 }
 
