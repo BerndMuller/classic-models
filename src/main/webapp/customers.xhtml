@@ -36,7 +36,10 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Bestellungen</f:facet>
-							#{customer.orders}
+							<h:link outcome="orders" value="Bestellungen" rendered="#{not empty customer.orders}">
+								<f:param name="customerId" value="#{customer.id}" />
+							</h:link>
+							<h:outputText value="keine Bestellungen" rendered="#{empty customer.orders}" />
 						</h:column>
 						<h:column>
 							<h:button outcome="customer" value="Ändern">

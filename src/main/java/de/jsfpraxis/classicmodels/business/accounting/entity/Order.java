@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Orders")
 @NamedQuery(name = "Order.findAll", query = "SELECT o from Order o LEFT JOIN FETCH o.customer")
+@NamedQuery(name = "Order.findOrdersForCustomer", query = "SELECT o from Order o LEFT JOIN FETCH o.customer where o.customer.id = :customerId")
 @NamedQuery(name = "Order.count", query = "SELECT count(o) FROM Order o")
 public class Order {
 

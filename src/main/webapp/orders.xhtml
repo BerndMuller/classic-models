@@ -12,17 +12,19 @@
 		}
   	</ui:define>
   	
-	<ui:define name="header">Customers</ui:define>
+	<ui:define name="header">Orders</ui:define>
 	
 	<ui:define name="main">
 		<f:metadata>
             <f:viewParam name="page"/>
+            <f:viewParam name="customerId"/> <!-- alternativ mit customer und Converter -->
         </f:metadata>
     	<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form id="form">
 			<section>
 				<h:panelGrid>
-					<h:dataTable id="table" value="#{ordersView.getOrders(page)}" var="order">
+
+					<h:dataTable value="#{ordersView.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}">
 						<h:column>
 							<f:facet name="header">Bst.Nr.</f:facet>
 							#{order.id}
@@ -49,7 +51,6 @@
 								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
 							</h:outputText>
 						</h:column>
-
 						<f:facet name="footer">
 							<h:button value="&lt;" outcome="orders.xhtml">
     			    			<f:param name="page" value="#{ordersView.adjustPage(page, -1)}"/>
@@ -59,8 +60,39 @@
         						<f:param name="page" value="#{ordersView.adjustPage(page, 1)}"/>
         					</h:button>
 						</f:facet>
-
 					</h:dataTable>
+
+					<h:dataTable value="#{ordersView.getOrdersForCustomer(customerId)}" var="order" rendered="#{empty page and not empty customerId}">
+						<f:facet name="header">
+							Bestellungen für 
+							<h:link outcome="customer" value="Kunde #{customerId}">
+								<f:param name="customerId" value="#{customerId}" />
+							</h:link>
+						</f:facet>
+						<h:column>
+							<f:facet name="header">Bst.Nr.</f:facet>
+							#{order.id}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Bestellung</f:facet>
+							<h:outputText value="#{order.orderDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Versand</f:facet>
+							<h:outputText value="#{order.shippedDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Zustellung</f:facet>
+							<h:outputText value="#{order.requiredDate}">
+								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+
 				</h:panelGrid>
 			</section>
 		</h:form>

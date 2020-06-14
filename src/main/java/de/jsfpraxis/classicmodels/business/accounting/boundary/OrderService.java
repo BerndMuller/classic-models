@@ -1,6 +1,9 @@
 package de.jsfpraxis.classicmodels.business.accounting.boundary;
 
+import java.util.List;
+
 import javax.ejb.Stateful;
+import javax.persistence.TypedQuery;
 
 import de.jsfpraxis.classicmodels.business.EntityService;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
@@ -19,4 +22,9 @@ public class OrderService extends EntityService<Order> {
 		super(Order.class);
 	}
 
+	public List<Order> getOrdersForCustomer(Integer customerId) {
+		TypedQuery<Order> query = em.createNamedQuery("Order.findOrdersForCustomer", Order.class);
+		query.setParameter("customerId", customerId);
+		return query.getResultList();
+	}
 }
