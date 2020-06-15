@@ -15,8 +15,16 @@
 		<section>
 			<h:panelGrid columns="2" >
 				Name: <h:inputText id="name" value="#{customerView.customer.customerName}" />
+				Ansprechpartner (Vorname) <h:inputText value="#{customerView.customer.contactFirstName}" />
+				Ansprechpartner (Nachname) <h:inputText value="#{customerView.customer.contactLastName}" />
+				Telefon <h:inputText value="#{customerView.customer.phone}" />
 				Stadt: <h:inputText value="#{customerView.customer.city}" />
 				Land: <h:inputText value="#{customerView.customer.country}" />
+				Adresse (1): <h:inputText value="#{customerView.customer.addressLine1}" />
+				Adresse (2): <h:inputText value="#{customerView.customer.addressLine2}" />
+				PLZ: <h:inputText value="#{customerView.customer.postalCode}" />
+				Bundesland: <h:inputText value="#{customerView.customer.state}" />
+				Kreditlimit: <h:inputText value="#{customerView.customer.creditLimit}" />
 				Mitarbeiter: 
 				<h:selectOneMenu value="#{customerView.customer.assignedEmployee}" converter="#{employeeConverter}">
 					<f:selectItem itemLabel="- nicht zugewiesen - " itemValue="#{null}" noSelectionOption="true" />

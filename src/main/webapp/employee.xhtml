@@ -21,7 +21,9 @@
 				Extension: <h:inputText value="#{employeeView.employee.extension}" />
 				Niederlassung: 
 				<h:selectOneMenu value="#{employeeView.employee.office}" converter="#{officeConverter}">
-					<f:selectItems value="#{officeConverter.allOffices()}" var="office" itemLabel="#{office.city}" />
+					<f:selectItem itemLabel="- nicht zugewiesen - " itemValue="#{null}" noSelectionOption="true" />
+					<!--  in Klasse Offices? -->
+					<f:selectItems value="#{officesView.offices}" var="office" itemLabel="#{office.city}" />
 				</h:selectOneMenu>
 				Vorgesetzter:
 				<h:selectOneMenu value="#{employeeView.employee.reportsTo}" converter="#{employeeConverter}">

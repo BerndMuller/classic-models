@@ -16,8 +16,8 @@ public class OfficesView {
 	@Inject
 	OfficeService officeService;
 	
-	public List<Office> getAll() {
-		return officeService.allOffices();
+	public List<Office> getOffices() {
+		return officeService.findAll();
 	}
 	
 }

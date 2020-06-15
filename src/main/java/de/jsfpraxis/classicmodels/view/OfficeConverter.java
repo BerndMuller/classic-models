@@ -1,13 +1,14 @@
 package de.jsfpraxis.classicmodels.view;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,9 +24,10 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Office;
  * @author Bernd Müller
  *
  */
+@SuppressWarnings("serial")
 @Named
-@ApplicationScoped
-public class OfficeConverter implements Converter<Office> {
+@ViewScoped
+public class OfficeConverter implements Converter<Office>, Serializable {
 	
 	private Map<String, Office> offices; // city -> office
 
@@ -39,16 +41,12 @@ public class OfficeConverter implements Converter<Office> {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Office office) {
-		return office.getCity();
+		return office == null ? null : office.getCity();
 	}
 
-	public List<Office>  allOffices() {
-		return officeService.allOffices();
-	}
-	
 	@PostConstruct
 	void init() {
-		offices = officeService.allOfficesAsMap();
+		offices = officeService.findAll().stream().collect(Collectors.toMap(office -> office.getCity(), office -> office));
 	}
 	
 }

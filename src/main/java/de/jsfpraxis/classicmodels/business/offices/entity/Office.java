@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Offices")
-@NamedQuery(name = "Office.getAll", query = "SELECT o from Office o")
+@NamedQuery(name = "Office.findAll", query = "SELECT o from Office o")
 public class Office {
 
 	@Id
