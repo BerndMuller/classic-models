@@ -19,7 +19,7 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @Entity
 @Table(name = "Employees")
-@NamedQuery(name = "Employee.findAll", query = "SELECT e from Employee e LEFT JOIN FETCH e.office order by e.firstName, lastName")
+@NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e LEFT JOIN FETCH e.office order by e.firstName, lastName")
 @NamedQuery(name = "Employee.count", query = "Select count(e) from Employee e")
 public class Employee {
 
@@ -48,7 +48,7 @@ public class Employee {
 	@JoinColumn(name = "reportsTo", nullable = false)
 	private Employee reportsTo;
 	
-	@Column(name = "JobTitle", length = 50, nullable = false)
+	@NotNull
 	private String jobTitle;
 
 	@OneToMany(mappedBy = "assignedEmployee")

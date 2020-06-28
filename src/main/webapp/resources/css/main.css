@@ -89,6 +89,7 @@ input[type=button], input[type=submit] {
 	border: var(--border);
 	font-size: 0.9rem;
  	padding: 0.2rem 0.5rem 0.2rem 0.5rem; 
+ 	border-radius: var(--border-radius);
 }
 
 input[type=button]:hover, input[type=submit]:hover {

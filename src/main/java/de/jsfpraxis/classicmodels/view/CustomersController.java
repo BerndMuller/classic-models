@@ -11,7 +11,7 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @Named
 @RequestScoped
-public class CustomersView {
+public class CustomersController {
 	
 	private Integer customerToDelete;
 	private List<Customer> customers;
@@ -19,7 +19,7 @@ public class CustomersView {
 	@Inject
 	CustomerService customerService;
 		
-	public CustomersView() {
+	public CustomersController() {
 	}
 	
 	public void deleteEmployee() {

@@ -13,7 +13,7 @@
 		<h:form id="form">
 			<section>
 				<h:panelGrid>
-					<h:dataTable value="#{customersView.customers}" var="customer">
+					<h:dataTable value="#{customersController.customers}" var="customer">
 						<h:column>
 							<f:facet name="header">Name</f:facet>
 							#{customer.customerName}
@@ -47,9 +47,9 @@
 							</h:button>
 						</h:column>
 						<h:column>
-							<h:commandButton action="#{customersView}" value="Löschen"
+							<h:commandButton action="#{customersController}" value="Löschen"
 								onclick="if (! confirm('Soll Kunde #{customer.id} wirklich gelöscht werden?')) return false">
-								<f:setPropertyActionListener target="#{customersView.customerToDelete}" value="#{customer.id}" />
+								<f:setPropertyActionListener target="#{customersController.customerToDelete}" value="#{customer.id}" />
 							</h:commandButton>
 						</h:column>
 					</h:dataTable>

@@ -11,7 +11,7 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
 
 @Named
 @RequestScoped
-public class OrdersView {
+public class OrdersController {
 
 	private List<Order> orders;
 	
@@ -19,7 +19,7 @@ public class OrdersView {
 	OrderService orderService;
 
 	
-	public OrdersView() {
+	public OrdersController() {
 	}
 	
 

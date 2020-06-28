@@ -10,15 +10,13 @@
 	<ui:define name="css">
   	</ui:define>
 
-	<ui:define name="header">Mitarbeiterübersicht</ui:define>
-
 	<ui:define name="main">
 		<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form>
 			<section>
 				<h:panelGrid>
-					<f:facet name="header">Mitarbeiter</f:facet>
-					<h:dataTable value="#{employeesView.employees}" var="employee">
+					<f:facet name="header">Mitarbeiterübersicht</f:facet>
+					<h:dataTable value="#{employeesController.employees}" var="employee">
 						<h:column>
 							<f:facet name="header">Vorname</f:facet>
 							#{employee.firstName}
@@ -41,7 +39,7 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Vorgesetzter</f:facet>
-						#{employee.reportsTo.firstAndLastName}
+							#{employee.reportsTo.firstAndLastName}
 						</h:column>
 						<h:column>
 							<h:button outcome="employee" value="Ändern">
@@ -49,9 +47,9 @@
 							</h:button>
 						</h:column>
 						<h:column>
-							<h:commandButton action="#{employeesView.deleteEmployee}" value="Löschen"
-								onclick="if (! confirm('Soll Mitarbeiter #{employee.id} wirklich gelöscht werden?')) return false">
-								<f:setPropertyActionListener target="#{employeesView.employeeToDelete}" value="#{employee.id}" />
+							<h:commandButton action="#{employeesController.deleteEmployee}" value="Löschen"
+								onclick="if (! confirm('Soll Mitarbeiter #{employee.firstAndLastName} wirklich gelöscht werden?')) return false">
+								<f:setPropertyActionListener target="#{employeesController.employeeToDelete}" value="#{employee.id}" />
 							</h:commandButton>
 						</h:column>
 					</h:dataTable>

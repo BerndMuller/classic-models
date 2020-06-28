@@ -11,7 +11,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 
 @Named
 @RequestScoped
-public class EmployeesView {
+public class EmployeesController {
 	
 	private Integer employeeToDelete;
 	private List<Employee> employees;
@@ -19,11 +19,12 @@ public class EmployeesView {
 	@Inject
 	EmployeeService employeeService;
 	
-	public EmployeesView() {
+	public EmployeesController() {
 	}
 	
-	public void deleteEmployee() {
+	public String deleteEmployee() {
 		employeeService.remove(employeeToDelete);
+		return "employees.xhtml?faces-redirect=true";
 	}
 	
 	/**

@@ -11,7 +11,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Office;
 
 @Named
 @RequestScoped
-public class OfficesView {
+public class OfficesController {
 
 	@Inject
 	OfficeService officeService;

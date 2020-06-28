@@ -9,31 +9,31 @@
 	<ui:define name="main">
 		<h:form>
 		<f:metadata>
-			<f:viewParam name="customerId" value="#{customerView.customerId}"/>
-			<f:viewAction action="#{customerView.viewAction}" />
+			<f:viewParam name="customerId" value="#{customerController.customerId}"/>
+			<f:viewAction action="#{customerController.viewAction}" />
 		</f:metadata>
 		<section>
 			<h:panelGrid columns="2" >
-				Name: <h:inputText id="name" value="#{customerView.customer.customerName}" />
-				Ansprechpartner (Vorname) <h:inputText value="#{customerView.customer.contactFirstName}" />
-				Ansprechpartner (Nachname) <h:inputText value="#{customerView.customer.contactLastName}" />
-				Telefon <h:inputText value="#{customerView.customer.phone}" />
-				Stadt: <h:inputText value="#{customerView.customer.city}" />
-				Land: <h:inputText value="#{customerView.customer.country}" />
-				Adresse (1): <h:inputText value="#{customerView.customer.addressLine1}" />
-				Adresse (2): <h:inputText value="#{customerView.customer.addressLine2}" />
-				PLZ: <h:inputText value="#{customerView.customer.postalCode}" />
-				Bundesland: <h:inputText value="#{customerView.customer.state}" />
-				Kreditlimit: <h:inputText value="#{customerView.customer.creditLimit}" />
+				Name: <h:inputText id="name" value="#{customerController.customer.customerName}" />
+				Ansprechpartner (Vorname) <h:inputText value="#{customerController.customer.contactFirstName}" />
+				Ansprechpartner (Nachname) <h:inputText value="#{customerController.customer.contactLastName}" />
+				Telefon <h:inputText value="#{customerController.customer.phone}" />
+				Stadt: <h:inputText value="#{customerController.customer.city}" />
+				Land: <h:inputText value="#{customerController.customer.country}" />
+				Adresse (1): <h:inputText value="#{customerController.customer.addressLine1}" />
+				Adresse (2): <h:inputText value="#{customerController.customer.addressLine2}" />
+				PLZ: <h:inputText value="#{customerController.customer.postalCode}" />
+				Bundesland: <h:inputText value="#{customerController.customer.state}" />
+				Kreditlimit: <h:inputText value="#{customerController.customer.creditLimit}" />
 				Mitarbeiter: 
-				<h:selectOneMenu value="#{customerView.customer.assignedEmployee}" converter="#{employeeConverter}">
+				<h:selectOneMenu value="#{customerController.customer.assignedEmployee}" converter="#{employeeConverter}">
 					<f:selectItem itemLabel="- nicht zugewiesen - " itemValue="#{null}" noSelectionOption="true" />
 					<!-- TODO in Klasse Employees -->
-					<f:selectItems value="#{employeesView.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
+					<f:selectItems value="#{employeesController.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
 				</h:selectOneMenu>
 			</h:panelGrid>
 		</section>
-		<h:commandButton action="#{customerView.save}" value="Speichern" />
+		<h:commandButton action="#{customerController.save}" value="Speichern" />
 		</h:form>
 	</ui:define>
 

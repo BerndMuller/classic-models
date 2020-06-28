@@ -12,7 +12,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 
 @Named
 @ViewScoped
-public class EmployeeView implements Serializable {
+public class EmployeeController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +25,7 @@ public class EmployeeView implements Serializable {
 	@Inject
 	OfficeService officeService;
 	
-	public EmployeeView() {
+	public EmployeeController() {
 		employee = new Employee();
 	}
 

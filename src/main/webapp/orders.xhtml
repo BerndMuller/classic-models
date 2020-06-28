@@ -24,7 +24,7 @@
 			<section>
 				<h:panelGrid>
 
-					<h:dataTable value="#{ordersView.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}">
+					<h:dataTable value="#{ordersController.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}">
 						<h:column>
 							<f:facet name="header">Bst.Nr.</f:facet>
 							#{order.id}
@@ -53,16 +53,16 @@
 						</h:column>
 						<f:facet name="footer">
 							<h:button value="&lt;" outcome="orders.xhtml">
-    			    			<f:param name="page" value="#{ordersView.adjustPage(page, -1)}"/>
+    			    			<f:param name="page" value="#{ordersController.adjustPage(page, -1)}"/>
         					</h:button>
         					&#x00A0;&#x00A0;
 		        			<h:button value="&gt;" outcome="orders.xhtml">
-        						<f:param name="page" value="#{ordersView.adjustPage(page, 1)}"/>
+        						<f:param name="page" value="#{ordersController.adjustPage(page, 1)}"/>
         					</h:button>
 						</f:facet>
 					</h:dataTable>
 
-					<h:dataTable value="#{ordersView.getOrdersForCustomer(customerId)}" var="order" rendered="#{empty page and not empty customerId}">
+					<h:dataTable value="#{ordersController.getOrdersForCustomer(customerId)}" var="order" rendered="#{empty page and not empty customerId}">
 						<f:facet name="header">
 							Bestellungen für 
 							<h:link outcome="customer" value="Kunde #{customerId}">

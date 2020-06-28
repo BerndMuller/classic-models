@@ -5,34 +5,36 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="header">Mitarbeiter (Details)</ui:define>
-	
+	r
 	<ui:define name="main">
 		<h:form>
 		<f:metadata>
-			<f:viewParam name="employeeId" value="#{employeeView.employeeId}"/>
-			<f:viewAction action="#{employeeView.viewAction}" />
+			<f:viewParam name="employeeId" value="#{employeeController.employeeId}"/>
+			<f:viewAction action="#{employeeController.viewAction}" />
 		</f:metadata>
 		<section>
 			<h:panelGrid columns="2" >
-				Vorname: <h:inputText id="vorname" value="#{employeeView.employee.firstName}" />
-				Nachname: <h:inputText id="nachname" value="#{employeeView.employee.lastName}" />
-				E-Mail: <h:inputText value="#{employeeView.employee.email}" />
-				Stellenbezeichnung: <h:inputText value="#{employeeView.employee.jobTitle}" />
-				Extension: <h:inputText value="#{employeeView.employee.extension}" />
+				<f:facet name="header">Mitarbeiter</f:facet>
+				Vorname: <h:inputText id="vorname" value="#{employeeController.employee.firstName}" />
+				Nachname: <h:inputText id="nachname" value="#{employeeController.employee.lastName}" />
+				E-Mail: <h:inputText value="#{employeeController.employee.email}" />
+				Stellenbezeichnung: <h:inputText value="#{employeeController.employee.jobTitle}" />
+				Extension: <h:inputText value="#{employeeController.employee.extension}" />
 				Niederlassung: 
-				<h:selectOneMenu value="#{employeeView.employee.office}" converter="#{officeConverter}">
+				<h:selectOneMenu value="#{employeeController.employee.office}" converter="#{officeConverter}">
 					<f:selectItem itemLabel="- nicht zugewiesen - " itemValue="#{null}" noSelectionOption="true" />
 					<!--  in Klasse Offices? -->
-					<f:selectItems value="#{officesView.offices}" var="office" itemLabel="#{office.city}" />
+					<f:selectItems value="#{officesController.offices}" var="office" itemLabel="#{office.city}" />
 				</h:selectOneMenu>
 				Vorgesetzter:
-				<h:selectOneMenu value="#{employeeView.employee.reportsTo}" converter="#{employeeConverter}">
+				<h:selectOneMenu value="#{employeeController.employee.reportsTo}" converter="#{employeeConverter}">
 					<f:selectItem itemLabel="- kein Vorgesetzter - " itemValue="#{null}" noSelectionOption="true" />
-					<f:selectItems value="#{employeesView.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
+					<f:selectItems value="#{employeesController.employees}" var="employee" itemLabel="#{employee.firstAndLastName}" />
 				</h:selectOneMenu>
+				<h:panelGroup />
+				<h:commandButton action="#{employeeController.save}" value="Speichern" />
 			</h:panelGrid>
 		</section>
-		<h:commandButton action="#{employeeView.save}" value="Speichern" />
 		</h:form>
 	</ui:define>
 

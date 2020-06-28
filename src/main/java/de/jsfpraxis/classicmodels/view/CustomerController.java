@@ -11,7 +11,7 @@ import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @Named
 @ViewScoped
-public class CustomerView implements Serializable {
+public class CustomerController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +21,7 @@ public class CustomerView implements Serializable {
 	@Inject
 	CustomerService customerService;
 
-	public CustomerView() {
+	public CustomerController() {
 		customer = new Customer();
 	}
 
