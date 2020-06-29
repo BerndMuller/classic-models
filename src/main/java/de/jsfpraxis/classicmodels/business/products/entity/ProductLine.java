@@ -5,17 +5,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ProductLines")
-@NamedQueries({
-	@NamedQuery(name = "ProductLine.getAll", query = "SELECT p from ProductLine p order by p.id"),
-	@NamedQuery(name = "ProductLine.getNumberOfProductLines", query = "Select count(p) from ProductLine p")
-})
+@NamedQuery(name = "ProductLine.findAll", query = "SELECT p from ProductLine p order by p.id")
 public class ProductLine {
 
 	@Id

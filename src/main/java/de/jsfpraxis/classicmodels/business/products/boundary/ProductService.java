@@ -16,7 +16,7 @@ public class ProductService {
 	}
 	
 	/**
-	 * All Product entities.
+	 * All Products.
 	 * 
 	 * @return List of Product entities
 	 */
