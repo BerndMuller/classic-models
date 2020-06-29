@@ -14,19 +14,17 @@
 		<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form>
 			<section>
-				<h:panelGrid>
-					<f:facet name="header">Produktserien</f:facet>
-					<h:dataTable value="#{productLinesController.productLines}" var="productLine" styleClass="datatable">
-						<h:column>
-							<f:facet name="header">Schlüssel</f:facet>
-							#{productLine.id}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Beschreibung</f:facet>
-							#{productLine.textDescription}
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
+				<header>Produktserien</header>
+				<h:dataTable value="#{productLinesController.productLines}" var="productLine" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Schlüssel</f:facet>
+						#{productLine.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Beschreibung</f:facet>
+						#{productLine.textDescription}
+					</h:column>
+				</h:dataTable>
 			</section>
 		</h:form>
 	</ui:define>

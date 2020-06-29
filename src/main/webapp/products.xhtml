@@ -14,41 +14,39 @@
 		<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form>
 			<section>
-				<h:panelGrid>
-					<f:facet name="header">Produktübersicht</f:facet>
-					<h:dataTable value="#{productsController.products}" var="product" styleClass="datatable">
-						<h:column>
-							<f:facet name="header">Schlüssel</f:facet>
-							#{product.id}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Produkt</f:facet>
-							#{product.productName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Produktlinie</f:facet>
-							<h:link outcome="product-line.xhtml" value="#{product.productLine.id}">
-								<f:param name="productLineId" value="#{product.productLine.id}" />
-							</h:link>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Maßstab</f:facet>
-							#{product.productScale}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Hersteller</f:facet>
-							#{product.productVendor}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Einkaufspreis</f:facet>
-							#{product.buyPrice}
-						</h:column>
-						<h:column>
-							<f:facet name="header">UVP</f:facet>
-							#{product.msrp}
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
+				<header>Produktübersicht</header>
+				<h:dataTable value="#{productsController.products}" var="product" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Schlüssel</f:facet>
+						#{product.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Produkt</f:facet>
+						#{product.productName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Produktlinie</f:facet>
+						<h:link outcome="product-line.xhtml" value="#{product.productLine.id}">
+							<f:param name="productLineId" value="#{product.productLine.id}" />
+						</h:link>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Maßstab</f:facet>
+						#{product.productScale}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Hersteller</f:facet>
+						#{product.productVendor}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Einkaufspreis</f:facet>
+						#{product.buyPrice}
+					</h:column>
+					<h:column>
+						<f:facet name="header">UVP</f:facet>
+						#{product.msrp}
+					</h:column>
+				</h:dataTable>
 			</section>
 		</h:form>
 	</ui:define>

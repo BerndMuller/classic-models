@@ -22,78 +22,76 @@
     	<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form id="form">
 			<section>
-				<h:panelGrid>
+				<header>Bestellungen</header>
+				<h:dataTable value="#{ordersController.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Bst.Nr.</f:facet>
+						#{order.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Kunde</f:facet>
+						#{order.customer.customerName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Bestellung</f:facet>
+						<h:outputText value="#{order.orderDate}">
+							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Versand</f:facet>
+						<h:outputText value="#{order.shippedDate}">
+							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Zustellung</f:facet>
+						<h:outputText value="#{order.requiredDate}">
+						<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					<f:facet name="footer">
+						<h:button value="&lt;" outcome="orders.xhtml">
+   			    			<f:param name="page" value="#{ordersController.adjustPage(page, -1)}"/>
+       					</h:button>
+       					&#x00A0;&#x00A0;
+	        			<h:button value="&gt;" outcome="orders.xhtml">
+       						<f:param name="page" value="#{ordersController.adjustPage(page, 1)}"/>
+       					</h:button>
+					</f:facet>
+				</h:dataTable>
 
-					<h:dataTable value="#{ordersController.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}">
-						<h:column>
-							<f:facet name="header">Bst.Nr.</f:facet>
-							#{order.id}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Kunde</f:facet>
-							#{order.customer.customerName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Bestellung</f:facet>
-							<h:outputText value="#{order.orderDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Versand</f:facet>
-							<h:outputText value="#{order.shippedDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Zustellung</f:facet>
-							<h:outputText value="#{order.requiredDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-						<f:facet name="footer">
-							<h:button value="&lt;" outcome="orders.xhtml">
-    			    			<f:param name="page" value="#{ordersController.adjustPage(page, -1)}"/>
-        					</h:button>
-        					&#x00A0;&#x00A0;
-		        			<h:button value="&gt;" outcome="orders.xhtml">
-        						<f:param name="page" value="#{ordersController.adjustPage(page, 1)}"/>
-        					</h:button>
-						</f:facet>
-					</h:dataTable>
+				<h:dataTable value="#{ordersController.getOrdersForCustomer(customerId)}" var="order" rendered="#{empty page and not empty customerId}" styleClass="datatable">
+					<f:facet name="header">
+						Bestellungen für 
+						<h:link outcome="customer" value="Kunde #{customerId}">
+							<f:param name="customerId" value="#{customerId}" />
+						</h:link>
+					</f:facet>
+					<h:column>
+						<f:facet name="header">Bst.Nr.</f:facet>
+						#{order.id}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Bestellung</f:facet>
+						<h:outputText value="#{order.orderDate}">
+							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Versand</f:facet>
+						<h:outputText value="#{order.shippedDate}">
+							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Zustellung</f:facet>
+						<h:outputText value="#{order.requiredDate}">
+							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+				</h:dataTable>
 
-					<h:dataTable value="#{ordersController.getOrdersForCustomer(customerId)}" var="order" rendered="#{empty page and not empty customerId}">
-						<f:facet name="header">
-							Bestellungen für 
-							<h:link outcome="customer" value="Kunde #{customerId}">
-								<f:param name="customerId" value="#{customerId}" />
-							</h:link>
-						</f:facet>
-						<h:column>
-							<f:facet name="header">Bst.Nr.</f:facet>
-							#{order.id}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Bestellung</f:facet>
-							<h:outputText value="#{order.orderDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Versand</f:facet>
-							<h:outputText value="#{order.shippedDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Zustellung</f:facet>
-							<h:outputText value="#{order.requiredDate}">
-								<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>
-							</h:outputText>
-						</h:column>
-					</h:dataTable>
-
-				</h:panelGrid>
 			</section>
 		</h:form>
 				

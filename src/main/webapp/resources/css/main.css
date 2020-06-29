@@ -35,7 +35,7 @@ body {
 	padding: 0.5%;
 }
 
-body header {
+body > header {
 	border: var(--border);
 	font-size: 1.1rem;
 	margin: var(--main-margin);
@@ -59,14 +59,24 @@ section > table > thead {
 	background-color: var(--main-color-light);
 	font-size: 1.1rem;
 }
+
+section > header {
+	border: var(--border);
+	font-size: 1.1rem;
+	font-weight: bolder;
+	text-align: center;
+	margin: 0.5rem 0.1rem 0.5rem 0.1rem;
+	padding: 0.5rem 0rem 0.5rem 0rem;
+	background-color: var(--main-color-light);
+}
 	
 footer {
 	border: var(--border);
 	font-size: 0.8rem;
+	background-color: white;
 	margin: var(--main-margin);
 	padding: var(--main-padding);
-	background-color: white;
-	text-align: center;
+	text-align: center;	
 }
 
 table {

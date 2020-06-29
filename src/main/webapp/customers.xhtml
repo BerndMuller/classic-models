@@ -12,48 +12,47 @@
 		<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form id="form">
 			<section>
-				<h:panelGrid>
-					<h:dataTable value="#{customersController.customers}" var="customer">
-						<h:column>
-							<f:facet name="header">Name</f:facet>
-							#{customer.customerName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Stadt</f:facet>
-							#{customer.city}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Land</f:facet>
-							#{customer.country}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Kontakt</f:facet>
-							#{customer.contactFirstName} #{customer.contactLastName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Mitarbeiter</f:facet>
-							#{customer.assignedEmployee.firstAndLastName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Bestellungen</f:facet>
-							<h:link outcome="orders" value="Bestellungen" rendered="#{not empty customer.orders}">
-								<f:param name="customerId" value="#{customer.id}" />
-							</h:link>
-							<h:outputText value="keine Bestellungen" rendered="#{empty customer.orders}" />
-						</h:column>
-						<h:column>
-							<h:button outcome="customer" value="Ändern">
-								<f:param name="customerId" value="#{customer.id}" />
-							</h:button>
-						</h:column>
-						<h:column>
-							<h:commandButton action="#{customersController}" value="Löschen"
-								onclick="if (! confirm('Soll Kunde #{customer.id} wirklich gelöscht werden?')) return false">
-								<f:setPropertyActionListener target="#{customersController.customerToDelete}" value="#{customer.id}" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
+				<header>Kundenübersicht</header>
+				<h:dataTable value="#{customersController.customers}" var="customer" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						#{customer.customerName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Stadt</f:facet>
+						#{customer.city}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Land</f:facet>
+						#{customer.country}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Kontakt</f:facet>
+						#{customer.contactFirstName} #{customer.contactLastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Mitarbeiter</f:facet>
+						#{customer.assignedEmployee.firstAndLastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Bestellungen</f:facet>
+						<h:link outcome="orders" value="Bestellungen" rendered="#{not empty customer.orders}">
+							<f:param name="customerId" value="#{customer.id}" />
+						</h:link>
+						<h:outputText value="keine Bestellungen" rendered="#{empty customer.orders}" />
+					</h:column>
+					<h:column>
+						<h:button outcome="customer" value="Ändern">
+							<f:param name="customerId" value="#{customer.id}" />
+						</h:button>
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{customersController}" value="Löschen"
+							onclick="if (! confirm('Soll Kunde #{customer.id} wirklich gelöscht werden?')) return false">
+							<f:setPropertyActionListener target="#{customersController.customerToDelete}" value="#{customer.id}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
 			</section>
 		</h:form>
 				

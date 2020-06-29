@@ -14,46 +14,44 @@
 		<h:outputStylesheet library="css" name="data-tables.css" />
 		<h:form>
 			<section>
-				<h:panelGrid>
-					<f:facet name="header">Mitarbeiterübersicht</f:facet>
-					<h:dataTable value="#{employeesController.employees}" var="employee">
-						<h:column>
-							<f:facet name="header">Vorname</f:facet>
-							#{employee.firstName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nachname</f:facet>
-							#{employee.lastName}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Niederlassung</f:facet>
-							#{employee.office.city}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Stellenbezeichnung</f:facet>
-							#{employee.jobTitle}
-						</h:column>
-						<h:column>
-							<f:facet name="header">E-Mail</f:facet>
-							#{employee.email}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Vorgesetzter</f:facet>
-							#{employee.reportsTo.firstAndLastName}
-						</h:column>
-						<h:column>
-							<h:button outcome="employee" value="Ändern">
-								<f:param name="employeeId" value="#{employee.id}" />
-							</h:button>
-						</h:column>
-						<h:column>
-							<h:commandButton action="#{employeesController.deleteEmployee}" value="Löschen"
-								onclick="if (! confirm('Soll Mitarbeiter #{employee.firstAndLastName} wirklich gelöscht werden?')) return false">
-								<f:setPropertyActionListener target="#{employeesController.employeeToDelete}" value="#{employee.id}" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
+				<header>Mitarbeiterübersicht</header>
+				<h:dataTable value="#{employeesController.employees}" var="employee" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Vorname</f:facet>
+						#{employee.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nachname</f:facet>
+						#{employee.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Geschäfststelle</f:facet>
+						#{employee.office.city}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Stellenbezeichnung</f:facet>
+						#{employee.jobTitle}
+					</h:column>
+					<h:column>
+						<f:facet name="header">E-Mail</f:facet>
+						#{employee.email}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Vorgesetzter</f:facet>
+						#{employee.reportsTo.firstAndLastName}
+					</h:column>
+					<h:column>
+						<h:button outcome="employee" value="Ändern">
+							<f:param name="employeeId" value="#{employee.id}" />
+						</h:button>
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{employeesController.deleteEmployee}" value="Löschen"
+							onclick="if (! confirm('Soll Mitarbeiter #{employee.firstAndLastName} wirklich gelöscht werden?')) return false">
+							<f:setPropertyActionListener target="#{employeesController.employeeToDelete}" value="#{employee.id}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
 			</section>
 		</h:form>
 	</ui:define>

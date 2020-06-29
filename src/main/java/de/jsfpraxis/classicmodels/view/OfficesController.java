@@ -12,12 +12,17 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Office;
 @Named
 @RequestScoped
 public class OfficesController {
+	
+	private List<Office> offices;
 
 	@Inject
 	OfficeService officeService;
 	
 	public List<Office> getOffices() {
-		return officeService.findAll();
+		if (offices == null) {
+			offices = officeService.findAll();
+		}
+		return offices;
 	}
 	
 }
