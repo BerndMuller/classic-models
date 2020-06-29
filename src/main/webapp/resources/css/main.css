@@ -96,7 +96,7 @@ input[type=button]:hover, input[type=submit]:hover {
 	filter: brightness(0.9);
 }
 
-input[type=text] {
+input[type=text], textarea {
 	width: var(--input-width);
 	height: var(--input-height);
 	border: var(--border);

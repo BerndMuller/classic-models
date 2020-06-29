@@ -36,6 +36,7 @@ public class EmployeeController implements Serializable {
 		} else {
 			employeeService.merge(employee);
 		}
+		// TODO auf Seite bleiben ?
 		return "employees.xhtml?faces-redirect=true";
 	}
 	

@@ -8,15 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCTS")
-@NamedQueries(
-	@NamedQuery(name = "Product.getAll", query = "SELECT p from Product p")
-)
+@NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p LEFT JOIN FETCH p.productLine")
 public class Product {
 
 	@Id
