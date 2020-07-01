@@ -5,12 +5,18 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="main">
-		<h:form>
+		<h:form id="form" enctype="multipart/form-data">
 		<section>
 			<h:panelGrid columns="2" >
 				<f:facet name="header">Serie</f:facet>
-				Serie: <h:inputText id="id" value="#{productLineController.productLine.id}" />
+				Name: <h:inputText id="id" value="#{productLineController.productLine.id}" />
 				Beschreibung: <h:inputTextarea id="textDescription" value="#{productLineController.productLine.textDescription}" style="height: 10rem;" />
+				Foto/Hochladen:
+				<h:panelGroup>
+					<h:inputFile id="inputFile" value="#{productLineController.file}" rendered="#{productLineController.productLine.image == null}"
+							validator="#{productLineController.validateFile}" />
+					<h:graphicImage value="#{imageConverter.asBase64(productLineController.productLine.image)}" />
+				</h:panelGroup>
 				<h:panelGroup />
 				<h:commandButton action="#{productLineController.save}" value="Speichern" />
 			</h:panelGrid>

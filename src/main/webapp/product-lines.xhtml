@@ -24,6 +24,10 @@
 						<f:facet name="header">Beschreibung</f:facet>
 						#{productLine.textDescription}
 					</h:column>
+					<h:column>
+						<f:facet name="header">Bild</f:facet>
+ 						<h:graphicImage value="#{imageConverter.asBase64(productLine.image)}" />
+					</h:column>
 				</h:dataTable>
 			</section>
 		</h:form>
