@@ -39,6 +39,10 @@
 						</h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Status</f:facet>
+						#{order.status}
+					</h:column>
+					<h:column>
 						<f:facet name="header">Versand</f:facet>
 						<h:outputText value="#{order.shippedDate}">
 							<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"/>

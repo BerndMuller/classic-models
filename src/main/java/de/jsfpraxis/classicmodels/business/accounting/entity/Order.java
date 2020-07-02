@@ -4,11 +4,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Orders")
@@ -18,19 +21,20 @@ import javax.persistence.Table;
 public class Order {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "OrderNumber")
 	private Integer id;
 
-	@Column(nullable = false)
+	@NotNull
 	private LocalDate orderDate;
 
-	@Column(nullable = false)
+	@NotNull
 	private LocalDate requiredDate;
 	
 	private LocalDate shippedDate;
 
-	@Column(length = 15, nullable = false)
-	private String status;
+	@NotNull
+	private OrderStatus status;
 
 	@Column(length = 1000)
 	private String comments;
@@ -82,12 +86,12 @@ public class Order {
 	}
 
 
-	public String getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(String status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 

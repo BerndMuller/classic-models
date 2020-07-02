@@ -21,6 +21,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 @Entity
 @Table(name = "Customers")
 @NamedQuery(name = "Customer.findAll", query = "SELECT c from Customer c order by c.id")
+@NamedQuery(name = "Customer.names", query = "SELECT c.customerName from Customer c order by c.customerName")
 @NamedQuery(name = "Customer.count", query = "Select count(c) from Customer c")
 public class Customer {
 

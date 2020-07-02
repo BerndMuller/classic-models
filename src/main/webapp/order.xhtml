@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="header">Neue Bestellung</ui:define>
+
+	<ui:define name="main">
+		<h:form id="form">
+			<section>
+				<header>Bestellung</header>
+				<h:panelGrid columns="2" >
+					Kunde:
+					<h:panelGroup>
+						<h:inputText value="#{orderController.customerName}" pt:list="names" pt:autocomplete="off" />
+						<datalist id="names">
+							<ui:repeat var="option" value="#{orderController.customerNames}">
+								<option>#{option}</option>
+							</ui:repeat>
+						</datalist>
+					</h:panelGroup>
+					
+					Serie:
+					<h:selectOneMenu value="#{orderController.productLine}" converter="#{productLineConverter}">
+						<f:selectItem itemLabel="- bitte wählen - " itemValue="#{null}" noSelectionOption="true" />
+						<f:selectItems value="#{productLineConverter.productLines}" var="productLine" itemLabel="#{productLine.id}" />
+						<f:ajax render="products" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				
+				<table>
+					<thead>
+						<tr><td>Produkt</td><td>Anzahl</td><td>Preis</td><td></td></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h:selectOneMenu id="products" value="#{orderController.product}">
+									<f:selectItems value="#{orderController.productsForSelectedProductLine}" var="product" 
+										itemLabel="#{product.productName}" itemValue="#{product.id}" />
+								</h:selectOneMenu>
+							</td>
+							<td>
+								<h:inputText value="#{orderController.quantity}" />
+							</td>
+							<td>
+								<h:inputText value="#{orderController.price}" />
+							</td>
+							<td>
+								<h:commandButton action="#{orderController.addOderItem}" value="Product hinzufügen" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+		</section>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

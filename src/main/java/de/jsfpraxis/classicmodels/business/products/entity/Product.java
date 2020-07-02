@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PRODUCTS")
 @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p LEFT JOIN FETCH p.productLine")
+@NamedQuery(name = "Product.findProductsForProductLine", query = "SELECT p FROM Product p where p.productLine = :productLine")
 public class Product {
 
 	@Id

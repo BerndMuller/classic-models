@@ -95,6 +95,8 @@ select {
 }
 
 input[type=button], input[type=submit] {
+	width: var(--input-width);
+	height: var(--input-height);
 	background-color: var(--main-color-light);
 	border: var(--border);
 	font-size: 0.9rem;
@@ -114,5 +116,5 @@ input[type=text], textarea {
 	background-color: var(--main-color-light);
 	filter: brightness(1.05);
 	border-radius: var(--border-radius);
-	padding-left: 0.2rem;
+	padding: 0.2rem 0.5rem 0.2rem 0.5rem; 
 }

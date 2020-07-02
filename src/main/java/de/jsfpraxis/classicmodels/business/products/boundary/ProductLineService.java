@@ -25,11 +25,17 @@ public class ProductLineService {
 	}
 	
 	/**
-	 * All Product Lines.
+	 * All product lines.
 	 * 
-	 * @return List of Product Lines
+	 * @return List of roduct lines
 	 */
 	public List<ProductLine> findAll() {
 		return em.createNamedQuery("ProductLine.findAll", ProductLine.class).getResultList();	
 	}
+	
+	
+	public List<String> getProductLineNames() {
+		return em.createNamedQuery("ProductLine.names", String.class).getResultList();	
+	}
+	
 }
