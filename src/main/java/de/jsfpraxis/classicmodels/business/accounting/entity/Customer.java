@@ -22,6 +22,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 @Table(name = "Customers")
 @NamedQuery(name = "Customer.findAll", query = "SELECT c from Customer c order by c.id")
 @NamedQuery(name = "Customer.names", query = "SELECT c.customerName from Customer c order by c.customerName")
+@NamedQuery(name = "Customer.findByName", query = "SELECT c from Customer c where customerName = :customerName")
 @NamedQuery(name = "Customer.count", query = "Select count(c) from Customer c")
 public class Customer {
 
@@ -31,30 +32,30 @@ public class Customer {
 	private Integer id;
 
 	@NotNull
-	@Column(length = 50, nullable = false)
-	private String customerName; // Firma
+	@Column(length = 50, unique = true)
+	private String customerName; // Firmenname
 	
 	@NotNull
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String contactFirstName;
 
 	@NotNull	
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String contactLastName;
 
 	@NotNull
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String phone;
 
 	@NotNull	
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String addressLine1;
 	
 	@Column(length = 50)
 	private String addressLine2;
 
 	@NotNull	
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String city;
 	
 	@Column(length = 50)

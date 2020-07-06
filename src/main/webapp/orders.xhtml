@@ -26,7 +26,11 @@
 				<h:dataTable value="#{ordersController.getOrdersPaginated(page)}" var="order" rendered="#{not empty page and empty customerId}" styleClass="datatable">
 					<h:column>
 						<f:facet name="header">Bst.Nr.</f:facet>
-						#{order.id}
+						<h:link outcome="order-details.xhtml">
+							<f:param name="orderId" value="#{order.id}" />
+							#{order.id}
+						</h:link>
+						
 					</h:column>
 					<h:column>
 						<f:facet name="header">Kunde</f:facet>

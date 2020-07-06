@@ -19,6 +19,10 @@ public class ProductService {
 	public ProductService() {
 	}
 	
+	public Product find(String id) {
+		return em.find(Product.class, id);
+	}
+	
 	/**
 	 * All Products.
 	 * 

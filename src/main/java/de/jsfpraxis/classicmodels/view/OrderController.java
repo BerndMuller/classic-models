@@ -1,5 +1,6 @@
 package de.jsfpraxis.classicmodels.view;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,19 +28,20 @@ import java.util.List;
 public class OrderController implements Serializable {
 	
 	@NotNull
-	private String customerName;
+	private String customerName; // UI
 	
 	@NotNull
-	private ProductLine productLine;
+	private ProductLine productLine; // UI
 	
-	private String productId;
+	private String productId; // UI
 	
-	private Integer quantity;
+	private Integer quantity; // UI
 	
-	private BigDecimal price;
+	private BigDecimal price; // UI
 	
-	private List<OrderDetails> details;
+	//private Order order; // the order to persist
 	
+	private List<OrderDetails> orderDetailsList; // gather all order items
 	
 	@Inject
 	CustomerService customerService;
@@ -52,30 +54,49 @@ public class OrderController implements Serializable {
 	
 
 	public OrderController() {
-		details = new ArrayList<>();
+		orderDetailsList = new ArrayList<>();
 	}
 
 	
 	public void addOderItem( ) {
-		System.out.println("customerName: " + customerName);
-		System.out.println("productLine: " + productLine);
-		System.out.println("product: " + productId);
-		System.out.println("quantity: " + quantity);
-		System.out.println("price: " + price);
-		
-		
-		Customer customer = customerService.find(103);
+		OrderDetails orderDetails = new OrderDetails();
+		orderDetails.setPosition(orderDetailsList.size() + 1);
+		orderDetails.setQuantityOrdered(quantity);
+		orderDetails.setPriceEach(price);
+		orderDetails.setProduct(productService.find(productId));
+		orderDetailsList.add(orderDetails);
+		System.out.println("Warenkorb hinzugefügt: " + productId + " " + quantity + " " + price);
+	}
+
+	
+	public void placeOrder() {
+		Customer customer = customerService.findByName(customerName);
 		Order order = new Order();
 		order.setOrderDate(LocalDate.now());
 		order.setRequiredDate(LocalDate.now().plusDays(10));
 		order.setStatus(OrderStatus.IN_PROCESS);
 		order.setCustomer(customer);
+		order.setOrderDetails(new ArrayList<>());
+		for (OrderDetails orderDetails : orderDetailsList) {
+			orderDetails.setOrder(order);
+			order.getOrderDetails().add(orderDetails);
+		}
 		orderService.persist(order);
-		
-		
-		
-		
 	}
+	
+	
+	/**
+	 * Ajax Listener für 'neues Produkt ausgewählt'. 
+	 * 
+	 * <p>
+	 * Setzt die unverbindliche Preisempfehlung (MSRP Manufacturer's Suggested Retail Price).
+	 * 
+	 * @param event selection changed 
+	 */
+	public void productSelected(AjaxBehaviorEvent event) {
+		price = productService.find(productId).getMsrp();
+	}
+	
 	
 	public List<Product> getProductsForSelectedProductLine() {
 		List<Product> products = productService.findProductsForProductLine(productLine);
@@ -121,6 +142,10 @@ public class OrderController implements Serializable {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public List<OrderDetails> getOrderDetailsList() {
+		return orderDetailsList;
 	}
 
 }

@@ -37,24 +37,42 @@
 					<tbody>
 						<tr>
 							<td>
-								<h:selectOneMenu id="products" value="#{orderController.product}">
+								<h:selectOneMenu id="products" value="#{orderController.product}" style="width: 100%">
+									<f:selectItem itemLabel="- bitte wählen - " itemValue="#{null}" noSelectionOption="true" />
 									<f:selectItems value="#{orderController.productsForSelectedProductLine}" var="product" 
 										itemLabel="#{product.productName}" itemValue="#{product.id}" />
+									<f:ajax listener="#{orderController.productSelected}" render="price" />
 								</h:selectOneMenu>
 							</td>
 							<td>
-								<h:inputText value="#{orderController.quantity}" />
+								<h:inputText value="#{orderController.quantity}" style="width: 100%;"/>
 							</td>
 							<td>
-								<h:inputText value="#{orderController.price}" />
+								<h:inputText id="price" value="#{orderController.price}" style="width: 100%;" />
 							</td>
 							<td>
-								<h:commandButton action="#{orderController.addOderItem}" value="Product hinzufügen" />
+								<h:commandButton action="#{orderController.addOderItem}" value="Produkt hinzufügen" style="width: 100%;" />
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
+				<h:panelGrid>
+					<f:facet name="header">Warenkorb</f:facet>
+					<h:dataTable value="#{orderController.orderDetailsList}" var="item">
+						<h:column>
+							#{item.position}
+						</h:column>
+						<h:column>
+							#{item.product.productName}
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+				
+				<h:panelGrid>
+					<h:commandButton action="#{orderController.placeOrder}" value="Bestellen" />
+				</h:panelGrid>				
+				
 		</section>
 		</h:form>
 	</ui:define>

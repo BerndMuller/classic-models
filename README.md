@@ -24,6 +24,16 @@ Java-EE-8-Application-Server!
 Wir haben mit WildFly 19 unter Java 13 getestet. 
 
 
+## Intgrationstests
+
+Wir verwenden [Arquillian](http://arquillian.org/) und einen gestarteten WildFly.
+Außerdem verwenden wir die eingebaute DataSource, Hibernates import.sql und die
+Standard ``persistence.xml``. Das bedeutet, dass alle Tabellen nach den Tests gedropt
+werden, also auch die der eventuell deployten Anwendung.
+
+```
+mvn clean test failsafe:integration-test
+```
 
 ## License
 

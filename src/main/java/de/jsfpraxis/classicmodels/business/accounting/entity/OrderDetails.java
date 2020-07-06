@@ -22,10 +22,6 @@ import de.jsfpraxis.classicmodels.business.products.entity.Product;
 @Entity
 @IdClass(OrderDetailsId.class)
 @Table(name = "OrderDetails")
-// TODO 'position' reserviertes Wort in EclipseLink
-//@NamedQueries(
-//		@NamedQuery(name = "OrderDeatils.getForBestellung", query = "SELECT o from OrderDetails o where o.order= :order order by position")
-//)
 public class OrderDetails {
 
 	@Id

@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import de.jsfpraxis.classicmodels.business.EntityService;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
+import de.jsfpraxis.classicmodels.business.accounting.entity.OrderDetails;
 
 /**
  * Services (CRUD) for Orders. 
@@ -20,6 +21,14 @@ public class OrderService extends EntityService<Order> {
 
 	public OrderService() {
 		super(Order.class);
+	}
+
+	@Override
+	public void persist(Order order) {
+		for (OrderDetails orderDetails : order.getOrderDetails()) {
+			em.merge(orderDetails.getProduct());
+		}
+		em.persist(order);
 	}
 
 	public List<Order> getOrdersForCustomer(Integer customerId) {

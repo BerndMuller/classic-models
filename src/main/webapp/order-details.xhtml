@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="css">
+
+  	</ui:define>
+  	
+	<ui:define name="main">
+		<f:metadata>
+            <f:viewParam name="orderId" value="#{orderDetailsController.orderId}" required="true" />
+            <f:viewAction action="#{orderDetailsController.viewAction}" />
+        </f:metadata>
+    	<h:outputStylesheet library="css" name="data-tables.css" />
+		<h:form id="form">
+			<section>
+				<header>Bestellung #{orderDetailsController.orderId}</header>
+				<h:dataTable value="#{orderDetailsController.orderDetails}" var="orderDetails" styleClass="datatable">
+					<h:column>
+						<f:facet name="header">Laufende Nr.</f:facet>
+						#{orderDetails.position}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Produkt</f:facet>
+						#{orderDetails.product.productName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Anzahl</f:facet>
+						#{orderDetails.quantityOrdered}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Preis</f:facet>
+						#{orderDetails.priceEach}
+					</h:column>
+				</h:dataTable>
+
+			</section>
+		</h:form>
+				
+	</ui:define>
+	
+
+</ui:composition>
