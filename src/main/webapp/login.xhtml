@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="main">
+		<h:form>
+			<section>
+				<header>Login</header>
+				<h:panelGrid columns="2">
+					<h:outputLabel for="userid" value="Benutzer-ID:" />
+					<h:inputText id="userid" label="Customer ID" value="#{authenticationView.userId}" tabindex="1" />
+					<h:outputLabel for="password" value="Password:" />
+					<h:panelGroup>
+						<h:inputSecret id="password" label="Password" value="#{authenticationView.password}" tabindex="2" />
+						<h:message for="password" style="color: red;" />
+					</h:panelGroup>
+					<h:panelGroup />
+					<h:commandButton action="#{authenticationView.login}" value="Login" tabindex="3" />	
+				</h:panelGrid>
+				<br />
+				Tipp: 1002/Murphy als Admin, 1056/Patterson als Employee
+			</section>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

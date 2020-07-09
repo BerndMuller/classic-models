@@ -13,8 +13,14 @@ nav ul {
     overflow: hidden;
 }
 
+
 nav li {
     float: left;
+}
+
+nav ul > li:last-child {
+	float: right;
+	right: 0px;
 }
 
 nav li a, .dropbtn {
@@ -33,6 +39,15 @@ nav li.dropdown {
 	display: inline-block;
 }
 
+nav ul > li:last-child .dropdown-content {
+    display: none;
+    position: absolute;
+    margin-left: -1rem; 
+    min-width: 6rem;
+    box-shadow: 5px 5px 10px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -41,6 +56,8 @@ nav li.dropdown {
     box-shadow: 5px 5px 10px 4px rgba(0,0,0,0.2); 
     z-index: 1;
 }
+
+
 
 .dropdown-content a {
     display: block;

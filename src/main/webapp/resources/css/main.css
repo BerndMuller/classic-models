@@ -84,7 +84,7 @@ table {
 }
 
 	
-select {
+input[type=text], input[type=password], textarea, select {
 	width: var(--input-width);
 	height: var(--input-height);
 	border: var(--border);
@@ -106,15 +106,4 @@ input[type=button], input[type=submit] {
 
 input[type=button]:hover, input[type=submit]:hover {
 	filter: brightness(0.9);
-}
-
-input[type=text], textarea {
-	width: var(--input-width);
-	height: var(--input-height);
-	border: var(--border);
-	font-size: 0.9rem;
-	background-color: var(--main-color-light);
-	filter: brightness(1.05);
-	border-radius: var(--border-radius);
-	padding: 0.2rem 0.5rem 0.2rem 0.5rem; 
 }
