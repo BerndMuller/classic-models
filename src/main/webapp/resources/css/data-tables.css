@@ -23,3 +23,7 @@
 .datatable tbody > tr:hover:nth-child(even) {
 	filter: brightness(1.05);
 }
+
+.datatable input[type=button], input[type=submit] {
+	width: 10rem;
+}

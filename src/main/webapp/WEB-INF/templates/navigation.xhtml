@@ -19,7 +19,7 @@
   	  				<ui:fragment rendered="#{securityRoleHelper.userLoggedInAsAdmin}">
   						<a href="#{externalContext.applicationContextPath}/admin/employee.xhtml">Mitarbeiter (neu/ändern)</a>
   					</ui:fragment>
-  					<ui:fragment rendered="#{securityRoleHelper.userLoggedInAsAdmin}">
+  					<ui:fragment rendered="#{securityRoleHelper.userLoggedInRole == securityRoleHelper.admin}">
   						<a href="#{externalContext.applicationContextPath}/admin/employees.xhtml">Mitarbeiter (alle)</a>
   					</ui:fragment>
   					<a href="#{externalContext.applicationContextPath}/internal/offices.xhtml">Geschäftsstellen (alle)</a>
@@ -58,7 +58,7 @@
   				<a href="#" class="dropbtn"><h:graphicImage library="icons" name="user.svg" width="18" /></a>
   				<div class="dropdown-content">
   					<ui:fragment rendered="#{empty request.userPrincipal}">
-  						<a href="#{externalContext.applicationContextPath}/login.xhtml?new=true">Login</a>
+  						<a href="#{externalContext.applicationContextPath}/login.xhtml">Login</a>
   					</ui:fragment>
   					<ui:fragment rendered="#{not empty request.userPrincipal}">
   						<h:form>

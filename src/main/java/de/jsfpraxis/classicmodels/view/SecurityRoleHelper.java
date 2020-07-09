@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Hilfsklasse, damit die SecuritRole-Werte'ADMIN' und 'EMPLOYEE' als Typen und nicht als Strings in JSF-Views verwendet werden können.
+ * Hilfsklasse, damit in JSF-Views mit SecurityRole gearbeitet werden kann.
+ * 
+ * <p>
+ * Verwendung von <f:importConstants> ist etwas schwieriger, da es Child von <f:view> sein muss.
  * 
  * @author Bernd Müller
  *
@@ -23,20 +26,18 @@ public class SecurityRoleHelper {
 	ExternalContext externalContext; 
 	
 	/**
-	 * Rolle des eingeloggten Benutzers als lower-case String.
+	 * Rolle des eingeloggten Benutzers.
 	 * 
-	 * @return "admin" falls Rolle ADMIN, "employee" falls Rolle EMPLOYEE, "" sonst
+	 * @return Rolle des eingeloggten Benutzers
 	 */
-	public String getUserLoggedInRole() {
+	public SecurityRole getUserLoggedInRole() {
 		if (isUserLoggedInAsAdmin()) {
-			return SecurityRole.ADMIN.toString().toLowerCase();
-		} else if (isUserLoggedInAsEmployee()) {
-			return SecurityRole.EMPLOYEE.toString().toLowerCase();
+			return SecurityRole.ADMIN;
 		} else {
-			return "";
+			return SecurityRole.EMPLOYEE;
 		}
 	}
-	
+
 	public boolean isUserLoggedIn() {
 		return getUserPrincipal() != null;
 	}
@@ -57,7 +58,7 @@ public class SecurityRoleHelper {
 		return SecurityRole.EMPLOYEE;
 	}
 	
-	public Principal getUserPrincipal() {
+	private Principal getUserPrincipal() {
 		return ((HttpServletRequest) externalContext.getRequest()).getUserPrincipal();
 	}
 	

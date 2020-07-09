@@ -36,9 +36,6 @@ public class AuthenticationView {
 	@Inject
 	SessionManager sessionManager;
 
-	// @Inject
-	// private SecurityRoleHelper securityRoleHelper;
-
 	@Inject
 	ExternalContext externalContext;
 

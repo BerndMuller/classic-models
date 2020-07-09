@@ -6,11 +6,11 @@
 	Classic Models
 	&#xA0;&#xA0; &#x0007C; &#xA0;&#xA0; &#x00A9; 
 	Bernd Müller
-	&#xA0;&#xA0; &#x0007C; &#xA0;&#xA0; 
-	x#{SecurityRoleHelper.userLoggedInRole}y
-	<h:outputText value="#{securityRoleHelper.userLoggedInRole}" />
-	<h:outputText value="#{request.userPrincipal}" />
-	<h:outputText value="#{request.userPrincipal.name}" />
+	<ui:fragment rendered="#{securityRoleHelper.userLoggedIn}">
+		&#xA0;&#xA0; &#x0007C; &#xA0;&#xA0; 
+		eingeloggt als 
+		<h:outputText value="#{securityRoleHelper.userLoggedInRole}" />
+	</ui:fragment>
   </footer>
 
 </ui:composition>
