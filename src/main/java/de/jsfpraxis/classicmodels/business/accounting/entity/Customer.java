@@ -33,7 +33,7 @@ public class Customer {
 
 	@NotNull
 	@Column(length = 50, unique = true)
-	private String customerName; // Firmenname
+	private String customerName; // company name
 	
 	@NotNull
 	@Column(length = 50)

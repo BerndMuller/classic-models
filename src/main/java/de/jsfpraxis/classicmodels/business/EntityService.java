@@ -1,7 +1,5 @@
 package de.jsfpraxis.classicmodels.business;
 
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -35,22 +33,14 @@ public abstract class EntityService<T> implements Serializable {
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	protected EntityManager em;
 	
-	@Inject
-	Event<T> event;
-	
     public EntityService(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
 	public void persist(T entity) {
 		em.persist(entity);
-		event.fire(entity);
 	}
 
-	public void remove(T entity) {
-        em.remove(em.contains(entity) ? entity : em.merge(entity));
-	}
-	
 	public void remove(Integer id) {
 		em.remove(find(id));
 	}
@@ -60,7 +50,7 @@ public abstract class EntityService<T> implements Serializable {
 	}
 
 	public void merge(T entity) {
-		em.merge(entity);
+		// i.l.b.
 	}
 
 	

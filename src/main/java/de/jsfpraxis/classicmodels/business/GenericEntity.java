@@ -2,6 +2,8 @@ package de.jsfpraxis.classicmodels.business;
 
 /**
  * For all entitites with Integer Id.
+ * 
+ * 
 */
 public interface GenericEntity {
 

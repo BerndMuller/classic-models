@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * Hilfsklasse, damit in JSF-Views mit SecurityRole gearbeitet werden kann.
  * 
  * <p>
- * Verwendung von <f:importConstants> ist etwas schwieriger, da es Child von <f:view> sein muss.
+ * Verwendung von {@literal <f:importConstants>} ist etwas schwieriger, da es Child von {@literal <f:view>} sein muss.
  * 
  * @author Bernd Müller
  *

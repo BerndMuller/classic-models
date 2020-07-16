@@ -14,15 +14,16 @@
 			<ui:fragment rendered="#{not empty request.userPrincipal}">
 	
 			<li class="dropdown">
-  	  			<a href="#" class="dropbtn">Mitarbeiter</a>
+  	  			<a href="#" class="dropbtn">Geschäftsstellen</a>
   	  			<div class="dropdown-content">
   	  				<ui:fragment rendered="#{securityRoleHelper.userLoggedInAsAdmin}">
   						<a href="#{externalContext.applicationContextPath}/admin/employee.xhtml">Mitarbeiter (neu/ändern)</a>
   					</ui:fragment>
+  					<!-- Alternative, falls auf boolesche 'userLoggedInAsXyz' verzichtet werden soll -->
   					<ui:fragment rendered="#{securityRoleHelper.userLoggedInRole == securityRoleHelper.admin}">
   						<a href="#{externalContext.applicationContextPath}/admin/employees.xhtml">Mitarbeiter (alle)</a>
   					</ui:fragment>
-  					<a href="#{externalContext.applicationContextPath}/internal/offices.xhtml">Geschäftsstellen (alle)</a>
+  					<a href="#{externalContext.applicationContextPath}/internal/offices.xhtml">Geschäftsstellen</a>
   	  			</div>
   			</li>
 

@@ -1,5 +1,8 @@
 package de.jsfpraxis.classicmodels.business.offices.boundary;
 
+import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
 
 import de.jsfpraxis.classicmodels.business.EntityService;
@@ -19,4 +22,15 @@ public class EmployeeService extends EntityService<Employee> {
 		super(Employee.class);
 	}
 
+	/**
+	 * Demo für @RolesAllowed.
+	 * <p>
+	 * Um die javax.ejb.EJBAccessException zu erhalten, kopieren Sie die Datei /admin/employees.xhtml
+	 * direkt unter "/". JSF/Sorteria erlaubt dann den Zugriff, die EJB nicht.
+	 * 
+	 */
+	@RolesAllowed("ADMIN")
+	public List<Employee> findAll() {
+		return super.findAll();
+	}
 }

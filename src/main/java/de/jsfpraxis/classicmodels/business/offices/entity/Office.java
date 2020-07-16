@@ -10,39 +10,40 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import de.jsfpraxis.classicmodels.business.GenericEntity;
 
 @Entity
 @Table(name = "Offices")
 @NamedQuery(name = "Office.findAll", query = "SELECT o from Office o")
-public class Office {
+public class Office implements GenericEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "OfficeCode")
 	private Integer id;
 
-	@Column(length = 50, nullable = false)
+	@NotNull
 	private String city;
 	
-	@Column(name = "Phone", length = 50, nullable = false)
+	@NotNull
 	private String phone;
 	  
-	@Column(length = 50, nullable = false)
+	@NotNull
 	private String addressLine1;
 	
-	@Column(length = 50)
 	private String addressLine2;
 
-	@Column(length = 50)
 	private String state;
 	
-	@Column(length = 50, nullable = false)
+	@NotNull
 	private String country;
 
-	@Column(length = 15, nullable = false)
+	@NotNull
 	private String postalCode;
 
-	@Column(name = "Territory", length = 10, nullable = false)
+	@NotNull
 	private String territory;
 	
 	@OneToMany(mappedBy = "office")

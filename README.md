@@ -10,6 +10,9 @@ Achtung: * ich arbeite noch dran, die Beispiele sind alles andere als vollständ
 Das Beispiel verwendet die Daten des Eclipse-Projekts [BIRT](https://www.eclipse.org/birt/),
 die man [herunterladen](http://www.eclipse.org/birt/documentation/sample-database.php) kann.
 
+Die Anwendung ist nicht vollständig in dem Sinne, dass alle Use-Cases bzw. CRUD-Funktionen
+realisiert sind.
+
 ## Getting Started
 ```
 mvn clean package

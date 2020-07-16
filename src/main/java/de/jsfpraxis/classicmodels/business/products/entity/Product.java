@@ -10,48 +10,75 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+
+/**
+ * Classic Models Products.
+ * 
+ * <p>
+ * 
+ * @author Bernd Müller
+ *
+ */
 @Entity
 @Table(name = "PRODUCTS")
 @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p LEFT JOIN FETCH p.productLine")
 @NamedQuery(name = "Product.findProductsForProductLine", query = "SELECT p FROM Product p where p.productLine = :productLine")
+@NamedQuery(name = "Product.idsForScale", query = "SELECT p.id FROM Product p where p.id like :scale")
 public class Product {
 
 	@Id
 	@Column(name = "ProductCode", length = 15)
 	private String id;
 	
-	@Column(length = 70, nullable = false)
+	@NotNull
 	private String productName;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ProductLine", nullable = false) // TODO length = 50
 	private ProductLine productLine;
 
-	@Column(length = 10, nullable = false)
+	@NotNull
 	private String productScale;
 	
-	@Column(length = 50, nullable = false)
+	@NotNull
 	private String productVendor;
 
-	@Column(length = 1000, nullable = false)
+	@NotNull
+	@Column(length = 1000)
 	private String productDescription;
 	
-	@Column(nullable = false)
+	@NotNull
 	private Integer quantityInStock;
 
-	@Column(nullable = false)
+	@NotNull
 	private BigDecimal buyPrice;
 	
-	@Column(name = "MSRP", nullable = false)
+	@NotNull
 	private BigDecimal msrp;
-	
 	
 	
 	public Product() {
 	}
 
-    @Override
+	
+	
+    public Product(@NotNull String productName, ProductLine productLine, @NotNull String productScale, @NotNull String productVendor,
+			@NotNull String productDescription, @NotNull Integer quantityInStock, @NotNull BigDecimal buyPrice, @NotNull BigDecimal msrp) {
+			this.productName = productName;
+		this.productLine = productLine;
+		this.productScale = productScale;
+		this.productVendor = productVendor;
+		this.productDescription = productDescription;
+		this.quantityInStock = quantityInStock;
+		this.buyPrice = buyPrice;
+		this.msrp = msrp;
+	}
+
+
+
+	@Override
     public boolean equals(Object other) {
         if (this == other) return true;
         if (!(other instanceof Product)) {

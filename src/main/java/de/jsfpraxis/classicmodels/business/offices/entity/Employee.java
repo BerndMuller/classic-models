@@ -15,13 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import de.jsfpraxis.classicmodels.business.GenericEntity;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @Entity
 @Table(name = "Employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e LEFT JOIN FETCH e.office order by e.firstName, lastName")
 @NamedQuery(name = "Employee.count", query = "Select count(e) from Employee e")
-public class Employee {
+public class Employee implements GenericEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
