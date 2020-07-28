@@ -40,7 +40,7 @@ public abstract class EntityService<T> implements Serializable {
 	public void persist(T entity) {
 		em.persist(entity);
 	}
-
+	
 	public void remove(Integer id) {
 		em.remove(find(id));
 	}

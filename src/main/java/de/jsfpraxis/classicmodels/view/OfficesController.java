@@ -2,6 +2,7 @@ package de.jsfpraxis.classicmodels.view;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,10 +20,11 @@ public class OfficesController {
 	OfficeService officeService;
 	
 	public List<Office> getOffices() {
-		if (offices == null) {
-			offices = officeService.findAll();
-		}
 		return offices;
 	}
 	
+	@PostConstruct
+	public void init() {
+		offices = officeService.findAll();
+	}
 }

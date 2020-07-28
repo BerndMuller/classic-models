@@ -33,13 +33,14 @@ public class OrderController implements Serializable {
 	@NotNull
 	private ProductLine productLine; // UI
 	
+	@NotNull
 	private String productId; // UI
 	
+	@NotNull
 	private Integer quantity; // UI
 	
+	@NotNull
 	private BigDecimal price; // UI
-	
-	//private Order order; // the order to persist
 	
 	private List<OrderDetails> orderDetailsList; // gather all order items
 	
@@ -68,8 +69,12 @@ public class OrderController implements Serializable {
 		System.out.println("Warenkorb hinzugefügt: " + productId + " " + quantity + " " + price);
 	}
 
-	
-	public void placeOrder() {
+	/**
+	 * Action-Methode zum Speichern einer Bestellung.
+	 * 
+	 * @return Navigationsziel
+	 */
+	public String placeOrder() {
 		Customer customer = customerService.findByName(customerName);
 		Order order = new Order();
 		order.setOrderDate(LocalDate.now());
@@ -82,6 +87,7 @@ public class OrderController implements Serializable {
 			order.getOrderDetails().add(orderDetails);
 		}
 		orderService.persist(order);
+		return "order-details.xhtml?orderId=" + order.getId() + "&faces-redirect=true";
 	}
 	
 	
@@ -99,9 +105,7 @@ public class OrderController implements Serializable {
 	
 	
 	public List<Product> getProductsForSelectedProductLine() {
-		List<Product> products = productService.findProductsForProductLine(productLine);
-		System.out.println("anzahl produkte " + products.size());
-		return products;
+		return productService.findProductsForProductLine(productLine);
 	}
 	
 	public List<String> getCustomerNames() {

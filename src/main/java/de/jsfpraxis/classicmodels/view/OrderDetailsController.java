@@ -27,9 +27,22 @@ public class OrderDetailsController {
 	public void viewAction() {
 		order = orderService.find(orderId);
 	}
+	
+	public String viewAction2() {
+		if (orderId == null) {
+			return "orders.xhtml?page=1&faces-redirect=true";	
+		} else {
+			order = orderService.find(orderId);
+			return null;
+		}
+	}
 
 	public List<OrderDetails> getOrderDetails() {
-		return order.getOrderDetails();
+		if (orderId == null) {
+			return List.of();
+		} else {
+			return order.getOrderDetails();	
+		}
 	}
 	
 	// Getter und Setter

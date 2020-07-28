@@ -17,7 +17,7 @@
   	  			<a href="#" class="dropbtn">Geschäftsstellen</a>
   	  			<div class="dropdown-content">
   	  				<ui:fragment rendered="#{securityRoleHelper.userLoggedInAsAdmin}">
-  						<a href="#{externalContext.applicationContextPath}/admin/employee.xhtml">Mitarbeiter (neu/ändern)</a>
+  						<a href="#{externalContext.applicationContextPath}/admin/employee.xhtml">Mitarbeiter (neu)</a>
   					</ui:fragment>
   					<!-- Alternative, falls auf boolesche 'userLoggedInAsXyz' verzichtet werden soll -->
   					<ui:fragment rendered="#{securityRoleHelper.userLoggedInRole == securityRoleHelper.admin}">

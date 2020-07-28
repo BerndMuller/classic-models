@@ -36,6 +36,7 @@ public class ProductServiceIT {
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.accounting")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.offices")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.products")
+        		.addPackages(false, "de.jsfpraxis.classicmodels.business")
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("import.sql")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

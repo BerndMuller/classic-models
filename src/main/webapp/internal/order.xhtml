@@ -5,13 +5,17 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:define name="header">Neue Bestellung</ui:define>
-
+	<ui:define name="css">
+		.warenkorb tbody > tr > td:last-child, tbody > tr > td:nth-last-child(2) {
+			text-align: right;
+		}
+  	</ui:define>
+  	
 	<ui:define name="main">
 		<h:form id="form">
 			<section>
 				<header>Bestellung</header>
-				<h:panelGrid columns="2" >
+				<h:panelGrid columns="2" styleClass="serie">
 					Kunde:
 					<h:panelGroup>
 						<h:inputText value="#{orderController.customerName}" pt:list="names" pt:autocomplete="off" />
@@ -30,7 +34,7 @@
 					</h:selectOneMenu>
 				</h:panelGrid>
 				
-				<table>
+				<table class="auswahl">
 					<thead>
 						<tr><td>Produkt</td><td>Anzahl</td><td>Preis</td><td></td></tr>
 					</thead>
@@ -48,7 +52,9 @@
 								<h:inputText value="#{orderController.quantity}" style="width: 100%;"/>
 							</td>
 							<td>
-								<h:inputText id="price" value="#{orderController.price}" style="width: 100%;" />
+								<h:inputText id="price" value="#{orderController.price}" style="width: 100%; text-align: right;">
+									<f:convertNumber pattern="#.##" />
+								</h:inputText>
 							</td>
 							<td>
 								<h:commandButton action="#{orderController.addOderItem}" value="Produkt hinzufügen" style="width: 100%;" />
@@ -56,18 +62,39 @@
 						</tr>
 					</tbody>
 				</table>
-
+				
+				<br/><br/>
+				
 				<h:panelGrid>
 					<f:facet name="header">Warenkorb</f:facet>
-					<h:dataTable value="#{orderController.orderDetailsList}" var="item">
+					<h:dataTable value="#{orderController.orderDetailsList}" var="item" styleClass="warenkorb">
 						<h:column>
 							#{item.position}
 						</h:column>
 						<h:column>
+							<f:facet name="header">Product</f:facet>
 							#{item.product.productName}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Anzahl</f:facet>
+							#{item.quantityOrdered}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Preis</f:facet>
+							<h:outputText value="#{item.priceEach}">
+								<f:convertNumber pattern="#.##" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Gesamt</f:facet>
+							<h:outputText value="#{item.quantityOrdered * item.priceEach}">
+								<f:convertNumber pattern="#.##" />
+							</h:outputText>
 						</h:column>
 					</h:dataTable>
 				</h:panelGrid>
+				
+				<br/><br/>
 				
 				<h:panelGrid>
 					<h:commandButton action="#{orderController.placeOrder}" value="Bestellen" />

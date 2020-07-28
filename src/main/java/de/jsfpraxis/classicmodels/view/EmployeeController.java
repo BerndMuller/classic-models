@@ -1,7 +1,10 @@
 package de.jsfpraxis.classicmodels.view;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,6 +18,7 @@ import de.jsfpraxis.classicmodels.business.offices.entity.Employee;
 public class EmployeeController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(EmployeeController.class.getCanonicalName());
 	
 	private Employee employee;
 	private Integer employeeId; // View-Parameter
@@ -26,7 +30,6 @@ public class EmployeeController implements Serializable {
 	OfficeService officeService;
 	
 	public EmployeeController() {
-		employee = new Employee();
 	}
 
 	
@@ -47,11 +50,21 @@ public class EmployeeController implements Serializable {
 	public void viewAction() {
 		if (employeeId == null) {
 			// kein View-Parameter, also Neuanlage
+			employee = new Employee();
 		} else {
 			employee = employeeService.find(employeeId);
 		}
 	}
 
+	@PostConstruct
+	public void init() {
+		logger.info("created");
+	}
+	
+	@PreDestroy
+	public void cleanUp() {
+		logger.info("to be destroyed");
+	}
 	
 	// Getter und Setter
 	public Employee getEmployee() {

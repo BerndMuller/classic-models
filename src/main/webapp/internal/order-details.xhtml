@@ -5,40 +5,41 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="css">
-
+		tbody > tr > td:last-child {
+			text-align: right;
+		}
   	</ui:define>
   	
 	<ui:define name="main">
 		<f:metadata>
-            <f:viewParam name="orderId" value="#{orderDetailsController.orderId}" required="true" />
+            <f:viewParam id="Order-Id" name="orderId" value="#{orderDetailsController.orderId}" required="true" />
             <f:viewAction action="#{orderDetailsController.viewAction}" />
         </f:metadata>
+        <h:message for="Order-Id" style="color: red;" />
     	<h:outputStylesheet library="css" name="data-tables.css" />
-		<h:form id="form">
-			<section>
-				<header>Bestellung #{orderDetailsController.orderId}</header>
-				<h:dataTable value="#{orderDetailsController.orderDetails}" var="orderDetails" styleClass="datatable">
-					<h:column>
-						<f:facet name="header">Laufende Nr.</f:facet>
-						#{orderDetails.position}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Produkt</f:facet>
-						#{orderDetails.product.productName}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Anzahl</f:facet>
-						#{orderDetails.quantityOrdered}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Preis</f:facet>
-						#{orderDetails.priceEach}
-					</h:column>
-				</h:dataTable>
-
-			</section>
-		</h:form>
-				
+		<section>
+			<header>Bestellung #{orderDetailsController.orderId}</header>
+			<h:dataTable value="#{orderDetailsController.orderDetails}" var="orderDetails" styleClass="datatable">
+				<h:column>
+					<f:facet name="header">Laufende Nr.</f:facet>
+					#{orderDetails.position}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Produkt</f:facet>
+					#{orderDetails.product.productName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Anzahl</f:facet>
+					#{orderDetails.quantityOrdered}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Preis</f:facet>
+					<h:outputText value="#{orderDetails.priceEach}">
+						<f:convertNumber pattern="#.##" />
+					</h:outputText>
+				</h:column>
+			</h:dataTable>
+		</section>
 	</ui:define>
 	
 
