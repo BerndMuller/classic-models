@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.security.enterprise.SecurityContext;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -24,6 +25,9 @@ public class SecurityRoleHelper {
 
 	@Inject
 	ExternalContext externalContext; 
+	
+	@Inject
+	SecurityContext securityContext;
 	
 	/**
 	 * Rolle des eingeloggten Benutzers.
@@ -59,7 +63,8 @@ public class SecurityRoleHelper {
 	}
 	
 	private Principal getUserPrincipal() {
-		return ((HttpServletRequest) externalContext.getRequest()).getUserPrincipal();
+		return getRequest().getUserPrincipal();
+		//return securityContext.getCallerPrincipal();
 	}
 	
 	private HttpServletRequest getRequest() {

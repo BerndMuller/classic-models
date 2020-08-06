@@ -12,7 +12,7 @@ import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
  *
  */
 @CustomFormAuthenticationMechanismDefinition(
-		loginToContinue = @LoginToContinue(loginPage = "/login.xhtml", useForwardToLogin = false, errorPage = ""))
+		loginToContinue = @LoginToContinue(loginPage = "/login.xhtml", useForwardToLogin = false))
 
 @DatabaseIdentityStoreDefinition(
 		dataSourceLookup = "java:comp/DefaultDataSource", 

@@ -5,7 +5,7 @@
 	version="2.2">
 
 	<persistence-unit name="primary">
- 		<jta-data-source>java:comp/DefaultDataSource</jta-data-source> <!-- JPA's default data source -->
+ 		<jta-data-source>java:comp/DefaultDataSource</jta-data-source> <!-- EE's default data source -->
 <!--  WildFly specific
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source> 
 -->				

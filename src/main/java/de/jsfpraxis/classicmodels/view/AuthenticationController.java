@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -26,9 +25,9 @@ import de.jsfpraxis.classicmodels.security.SessionManager;
 
 @Named
 @RequestScoped
-public class AuthenticationView {
+public class AuthenticationController {
 	
-	private static final Logger logger = Logger.getLogger(AuthenticationView.class.getCanonicalName());
+	private static final Logger logger = Logger.getLogger(AuthenticationController.class.getCanonicalName());
 
 	@Inject
 	SecurityContext securityContext;
@@ -48,7 +47,7 @@ public class AuthenticationView {
 	@NotNull
 	private String password; // maps to Employee.lastname
 
-	public AuthenticationView() {
+	public AuthenticationController() {
 
 	}
 

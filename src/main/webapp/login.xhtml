@@ -10,14 +10,14 @@
 				<header>Login</header>
 				<h:panelGrid columns="2">
 					<h:outputLabel for="userid" value="Benutzer-ID:" />
-					<h:inputText id="userid" label="Customer ID" value="#{authenticationView.userId}" tabindex="1" />
+					<h:inputText id="userid" label="Customer ID" value="#{authenticationController.userId}" tabindex="1" />
 					<h:outputLabel for="password" value="Password:" />
 					<h:panelGroup>
-						<h:inputSecret id="password" label="Password" value="#{authenticationView.password}" tabindex="2" />
+						<h:inputSecret id="password" label="Password" value="#{authenticationController.password}" tabindex="2" />
 						<h:message for="password" style="color: red;" />
 					</h:panelGroup>
 					<h:panelGroup />
-					<h:commandButton action="#{authenticationView.login}" value="Login" tabindex="3" />	
+					<h:commandButton action="#{authenticationController.login}" value="Login" tabindex="3" />	
 				</h:panelGrid>
 				<br />
 				Tipp: 1002/Murphy als Admin, 1056/Patterson als Employee

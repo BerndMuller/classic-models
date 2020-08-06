@@ -63,7 +63,7 @@
   					</ui:fragment>
   					<ui:fragment rendered="#{not empty request.userPrincipal}">
   						<h:form>
-							<h:commandLink value="Logout" type="submit" action="#{authenticationView.logout}" />
+							<h:commandLink value="Logout" type="submit" action="#{authenticationController.logout}" />
 						</h:form>
 					</ui:fragment>
 				</div>
