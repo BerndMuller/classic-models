@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.jsfpraxis.classicmodels.business.EntityService;
+import de.jsfpraxis.classicmodels.business.GenericEntity;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 
 @RunWith(Arquillian.class)
@@ -25,6 +26,7 @@ public class CustomerServiceIT {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
         		.addClass(EntityService.class)
+        		.addClass(GenericEntity.class)
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.accounting")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.offices")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.products")

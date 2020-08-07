@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.jsfpraxis.classicmodels.business.EntityService;
+import de.jsfpraxis.classicmodels.business.GenericEntity;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Customer;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
 import de.jsfpraxis.classicmodels.business.accounting.entity.OrderDetails;
@@ -43,6 +44,7 @@ public class OrderServiceIT {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
         		.addClass(EntityService.class)
+        		.addClass(GenericEntity.class)
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.accounting")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.offices")
         		.addPackages(true, "de.jsfpraxis.classicmodels.business.products")
