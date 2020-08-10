@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -20,6 +21,8 @@ public class OrderPdfCreatorTest {
 		Order order = new Order();
 		order.setId(4711);
 		order.setOrderDetails(new ArrayList<>());
+		order.setOrderDate(LocalDate.now());
+		order.setRequiredDate(LocalDate.now().plusDays(10));
 		
 		OrderDetails details = new OrderDetails();
 		details.setPosition(1);
