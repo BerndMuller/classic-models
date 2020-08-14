@@ -41,7 +41,8 @@
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="#{orderDetailsController.getOrderAsPdf()}" value="PDF" /> 
+				<h:commandButton action="#{orderDetailsController.getOrderAsPdf()}" value="Als PDF exportieren" style="width: 10rem; margin-right: 1rem;" /> 
+				<h:commandButton action="#{orderDetailsController.getOrderAsExcel()}" value="Als Excel exportieren" style="width: 10rem;" /> 
 			</h:form>
 		</section>
 	</ui:define>

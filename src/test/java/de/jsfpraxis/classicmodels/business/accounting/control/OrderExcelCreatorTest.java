@@ -45,7 +45,7 @@ public class OrderExcelCreatorTest {
 		details.setQuantityOrdered(10);
 		order.getOrderDetails().add(details);
 		
-		byte[] bytes = new OrderExcelCreator().toPdf(order);
+		byte[] bytes = new OrderExcelCreator().toExcel(order);
 		String tmpdir = System.getProperty("java.io.tmpdir");
 		System.out.println("writing pdf test file to " + tmpdir);
 		Files.write(Paths.get(tmpdir + "/order.xlsx"), bytes);

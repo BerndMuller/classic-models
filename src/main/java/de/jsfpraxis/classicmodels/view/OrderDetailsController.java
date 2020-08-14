@@ -13,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jsfpraxis.classicmodels.business.accounting.boundary.OrderService;
+import de.jsfpraxis.classicmodels.business.accounting.control.OrderExcelCreator;
 import de.jsfpraxis.classicmodels.business.accounting.control.OrderPdfCreator;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
 import de.jsfpraxis.classicmodels.business.accounting.entity.OrderDetails;
@@ -31,6 +32,9 @@ public class OrderDetailsController implements Serializable {
 	
 	@Inject
 	OrderPdfCreator orderPdfCreator;
+	
+	@Inject
+	OrderExcelCreator orderExcelCreator;
 	
 	@Inject
 	FacesContext facesContext;
@@ -53,6 +57,23 @@ public class OrderDetailsController implements Serializable {
 		facesContext.responseComplete();
 	}
 
+	
+	public void getOrderAsExcel() throws IOException {
+		byte[] excel = orderExcelCreator.toExcel(order); 
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(excel.length);
+		baos.write(excel, 0, excel.length);
+		HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		response.setContentLength(excel.length);
+		response.setHeader("Content-disposition", "inline;filename=\"order-" + order.getId() + ".xlsx\"");
+		ServletOutputStream out = response.getOutputStream();
+		baos.writeTo(out);
+		out.flush();
+		response.flushBuffer();
+		facesContext.responseComplete();
+	}
+
+	
 	public void viewAction() {
 		order = orderService.find(orderId);
 	}

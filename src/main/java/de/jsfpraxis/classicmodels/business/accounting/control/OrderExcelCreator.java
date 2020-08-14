@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -13,9 +15,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import de.jsfpraxis.classicmodels.business.accounting.entity.Order;
 import de.jsfpraxis.classicmodels.business.accounting.entity.OrderDetails;
 
+@RequestScoped
 public class OrderExcelCreator {
 	
-	public byte[] toPdf(Order order) throws IOException {
+	public byte[] toExcel(Order order) throws IOException {
 		
         Workbook workbook = new XSSFWorkbook();
         
