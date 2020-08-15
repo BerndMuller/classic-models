@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<!-- web.xml für Drone-Test ohne Security -->
+</jboss-web>
