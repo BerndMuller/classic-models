@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.pdbm.cm</groupId>
+	<groupId>de.jsfpraxis.classicmodels</groupId>
 	<artifactId>classic-models</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
@@ -113,9 +113,35 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-
+		
+<!-- 		<dependency> -->
+<!--   			<groupId>org.seleniumhq.selenium</groupId> -->
+<!--   			<artifactId>selenium-java</artifactId> -->
+<!--   			<version>3.141.59</version> -->
+<!--   			<scope>test</scope> -->
+<!-- 		</dependency> -->
+		
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<integration-tests>**/*IT.java</integration-tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>selenium</id>
+			<properties>
+				<integration-tests>**/*ITSelenium.java</integration-tests>
+			</properties>
+		</profile>
+		
+	</profiles>
+	
 	<build>
 		<finalName>classic-models</finalName>
 		<plugins>
@@ -143,6 +169,7 @@
 					</argLine>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -151,8 +178,27 @@
 					<argLine>
 						--illegal-access=permit
 					</argLine>
+					<includes>
+					    <include>${integration-tests}</include>
+					</includes>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>show-profiles</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>active-profiles</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -42,6 +42,15 @@ werden, also auch die der eventuell deployten Anwendung.
 mvn clean test failsafe:integration-test
 ```
 
+Für UI-Tests verwendet ``EmployeeIT`` Drone und Graphene, ``EmployeeITSelenium`` verwendet ausschließlich
+Selenium. Selenium-Test geht nicht headless. Wir hatten Probleme mit FirefoxDriver 0.27, siehe auch
+[Unable to find a matching set of capabilities](https://github.com/mozilla/geckodriver/issues/1756).
+Version 0.26 ist ok.
+
+```
+mvn clean test -Dit.test=EmployeeITSelenium failsafe:integration-test
+```
+
 ## License
 
 See the [LICENSE](LICENSE.txt) file for license rights and limitations (MIT).

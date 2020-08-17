@@ -12,10 +12,10 @@
 
 	<ui:define name="main">
 		<h:outputStylesheet library="css" name="data-tables.css" />
-		<h:form>
+		<h:form id="form">
 			<section>
 				<header>Mitarbeiterübersicht</header>
-				<h:dataTable value="#{employeesController.employees}" var="employee" styleClass="datatable">
+				<h:dataTable id="data" value="#{employeesController.employees}" var="employee" styleClass="datatable">
 					<h:column>
 						<f:facet name="header">Vorname</f:facet>
 						#{employee.firstName}
